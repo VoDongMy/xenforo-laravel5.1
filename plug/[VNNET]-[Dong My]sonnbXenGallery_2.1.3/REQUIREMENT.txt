@@ -1,0 +1,4 @@
+You need to make sure your servers match following requirements:
+
+1. XenForo 1.1.13 or later.
+2. EXIF extension to read Photo's EXIF data.

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<block block_id="TaigaChatAlt" title="TaigaChat Full Width" version_string="1.0.0" version_id="1" url="" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="" cache="now">
+  <admin_templates/>
+  <listeners/>
+  <options/>
+  <phrases/>
+  <route_prefixes/>
+  <templates>
+    <template title="EWRblock_TaigaChatAlt"><![CDATA[<xen:include template="dark_taigachat">
+<xen:set var="$taigachat_alt">1</xen:set>
+</xen:include>
+]]></template>
+  </templates>
+</block>

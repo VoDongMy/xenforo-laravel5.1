@@ -1,0 +1,89 @@
+============Options Location============
+
+1. Go your ACP options
+2. Click on "sonnb - XenGallery"
+
+============User Group Permission============
+
+1. Go your ACP -> Users -> User Group Permission
+2. Click on group you want to assign permissions.
+3. Look for section "sonnb - XenGallery" and "sonnb - XenGallery - Moderator Permission".
+
+============Style Properties Location============
+
+1. Go your ACP options -> Appearance -> Style Properties
+2. Click on: "sonnb - XenGallery - Grid Layout" or "sonnb - XenGallery - Album/Photo View"
+
+============Importing============
+Currently, addon supports importing your albums, photos and comments from:
+- [xfru] User Albums
+	1. Go your ACP options -> Tools
+	2. Import External Data -> [xfru] User Albums => sonnb - XenGallery
+	
+- Your Existing Forum
+	1. Go your ACP options -> Tools
+	2. Import External Data -> Forum Threads => sonnb - XenGallery
+
+- vBulletion Album 4.x+
+	1. Go your ACP options -> Tools
+	2. Import External Data -> vBB 4.x => sonnb - XenGallery
+	
+- vBulletion Album 3.8.x
+	1. Go your ACP options -> Tools
+	2. Import External Data -> vBB 3.8.x User Albums => sonnb - XenGallery
+	
+- IPB.Gallery 5.0.2+ (For IPB.Gallery categories would be imported either).
+	1. Go your ACP options -> Tools
+	2. Import External Data -> IPB.Gallery 5.0.2+ => sonnb - XenGallery
+	
+- PhotoPost Pro 8.4 (vB Integration).
+	1. Go your ACP options -> Tools
+	2. Import External Data -> PhotoPost Pro 8.4 (vBB Integration) => sonnb - XenGallery
+	
+- PhotoPost Pro 8.4 (XF Integration).
+	1. Go your ACP options -> Tools
+	2. Import External Data -> PhotoPost Pro 8.4 (XF Integration) => sonnb - XenGallery
+	
+- PhotoPost vBGallery 3.x (vB 4.x).
+	1. Go your ACP options -> Tools
+	2. Import External Data -> PhotoPost vBGallery 3.x (vB 4.x) => sonnb - XenGallery
+	
+- PhotoPost vBGallery 2.4.x (vB 3.6.x+).
+	1. Go your ACP options -> Tools
+	2. Import External Data -> PhotoPost vBGallery 2.4.x+ (vB 3.7.x+) => sonnb - XenGallery
+	
+- PhotoPlog 2.1.4.x (vB 3.6.x+).
+	1. Go your ACP options -> Tools
+	2. Import External Data -> PhotoPlog 2.1.4.x (vB 3.6.x+) => sonnb - XenGallery	
+	
+- [DBTech] Gallery PRO 1.2.8 (vB 4.x).
+	1. Go your ACP options -> Tools
+	2. Import External Data -> [DBTech] Gallery PRO 1.2.8 (vB 4.x) => sonnb - XenGallery
+	
+- XenMedia Free Version.
+	1. Go your ACP options -> Tools
+	2. Import External Data -> XenMedio (Media) Free => sonnb - XenGallery
+
+============Create your own Categories and Collections============
+Categoris are being used to classify your member's album while Collections is the set of albums/photos that would be promoted by your staffs.
+
+1. Go your ACP options -> Applications
+2. XenGallery -> Categories/Collections.
+
+
+============Camera Data============
+When someone posting their photos, if camera EXIF does exist, they would be automatically detected and be saved to database. These data would 
+be available on Gallery camera page. Although we have almost camera's data in database but only user posted data would be shown. 
+Sometime the camera's names in database might be different from camera's names in EXIF so you might need to edit them to be matched. 
+You also could modify camera's thumbnail here.
+
+1. Go your ACP options -> Applications
+2. XenGallery -> Camera's Data.
+
+============Widget Framework============
+If you are using Widget Framework and you want to show some comments, albums and photos using widget? It is absolutely possible:
+
+1. Go your ACP options -> Appearance -> 
+2. Widget Framework -> Add Widget.
+
+Choose Renderer as: [Gallery] Top Albums, [Gallery] Top Photos or [Gallery] Top Comments and configure its options to match your requirements.

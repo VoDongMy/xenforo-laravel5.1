@@ -1,0 +1,266 @@
+[Upgrading Instructions]
+==========================================================================================
+I. Upgrade to 2.1.3
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. Clear cache (Cloudflare,...) to remove cached js files.
+4. You are done.
+
+==========================================================================================
+I. Upgrade to 2.1.2
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. Clear cache (Cloudflare,...) to remove cached js files.
+4. Revert/merge out-of-date templates.
+5. You are done.
+
+==========================================================================================
+I. Upgrade to 2.1.1
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. Clear cache (Cloudflare,...) to remove cached js files.
+4. Revert/merge out-of-date templates.
+5. You are done.
+
+==========================================================================================
+I. Upgrade to 2.1.0
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. Clear cache (Cloudflare,...) to remove cached js files.
+4. Revert/merge out-of-date templates.
+5. You are done.
+
+==========================================================================================
+I. Upgrade to 2.0.6
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. Clear cache (Cloudflare,...) to remove cached js files.
+4. You are done.
+
+==========================================================================================
+I. Upgrade to 2.0.5
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. Clear cache (Cloudflare,...) to remove cached js files.
+4. You are done.
+
+==========================================================================================
+I. Upgrade to 2.0.4
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. Clear cache (Cloudflare,...) to remove cached js files.
+4. Rebuild contents and albums
+5. You are done.
+
+==========================================================================================
+I. Upgrade to 2.0.3
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. You are done.
+
+==========================================================================================
+I. Upgrade to 2.0.2
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. You are done.
+
+==========================================================================================
+I. Upgrade to 2.0.1
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. You are done.
+
+==========================================================================================
+I. Upgrade to 2.0.0
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Backup your database for safety reason
+3. Import "addon-sonnb_xengallery.xml"
+3. Clear cache (Cloudflare,...) to remove cached js files.
+4. Rebuild photos and albums
+5. You are done.
+
+==========================================================================================
+I. Upgrade to 1.1.4
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. You are done.
+
+==========================================================================================
+I. Upgrade to 1.1.3
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. You are done.
+
+==========================================================================================
+I. Upgrade to 1.1.2
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. Clear cache (Cloudflare,...) to remove cached js files.
+4. Rebuild photos and albums (If you did not do it since 1.1.0).
+5. You are done.
+
+==========================================================================================
+I. Upgrade to 1.1.1
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. Clear cache (Cloudflare,...) to remove cached js files.
+4. Rebuild photos with "Rebuild EXIF" option selected.
+5. Rebuild albums.
+6. You are done.
+
+==========================================================================================
+I. Upgrade to 1.1.0
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. Clear cache (Cloudflare,...) to remove cached js files.
+4. Rebuild photos with "Rebuild EXIF" option selected.
+5. Rebuild albums.
+6. You are done.
+
+==========================================================================================
+I. Upgrade to 1.0.17
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. Clear cache (Cloudflare,...) to remove cached js files.
+4. You are done.
+
+==========================================================================================
+I. Upgrade to 1.0.16
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. Clear cache (Cloudflare,...) to remove cached js files.
+4. Rebuild photos with "Rebuild EXIF" option selected.
+5. You are done.
+
+==========================================================================================
+I. Upgrade to 1.0.15
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. You are done.
+
+==========================================================================================
+I. Upgrade to 1.0.14
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. Clear cache (Cloudflare,...) to remove cached js files.
+4. You are done.
+
+==========================================================================================
+I. Upgrade to 1.0.13
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. Clear cache (Cloudflare,...) to remove cached js files.
+4. You are done.
+
+==========================================================================================
+I. Upgrade to 1.0.12 Fix 2
+==========================================================================================
+1. If you are on 1.0.12 or 1.0.12 Fix 1
+	- Upload the contents of the upload/ folder to your XenForo root.
+	- You are done.
+
+2. If you are on an earlier version
+	- Please following below instruction "Upgrade to 1.0.12".
+	
+==========================================================================================
+I. Upgrade to 1.0.12 Fix 1
+==========================================================================================
+1. If you are on 1.0.12
+	- Upload the contents of the upload/ folder to your XenForo root.
+	- You are done.
+
+2. If you are on an earlier version
+	- Please following below instruction "Upgrade to 1.0.12".
+
+==========================================================================================
+I. Upgrade to 1.0.12
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. Rebuild photo's data with option "Rebuild photo's EXIF information" checked.
+4. Rebuild Search index of photo.
+5. You are done.
+
+==========================================================================================
+I. Upgrade to 1.0.11
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. Clear cache (Cloudflare,...) to remove cached js files.
+4. You are done.
+
+==========================================================================================
+I. Upgrade to 1.0.10
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. You are done.
+
+==========================================================================================
+I. Upgrade to 1.0.9
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. Clear cache (Cloudflare,...) to remove cached js files.
+4. You are done.
+
+==========================================================================================
+I. Upgrade to 1.0.8
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. You are done.
+
+==========================================================================================
+I. Upgrade to 1.0.7
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. Clear cache (Cloudflare,...) to remove cached js files.
+4. Rebuild Album/Photo cache to reindex albums/photos into search index
+5. You are done.
+
+==========================================================================================
+I. Upgrade to 1.0.6
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. You are done.
+
+==========================================================================================
+I. Upgrade to 1.0.5
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. Clear cache (Cloudflare,...) to remove cached js files.
+4. You are done.
+
+==========================================================================================
+I. Upgrade to 1.0.4
+==========================================================================================
+1. Upload the contents of the upload/ folder to your XenForo root.
+2. Import "addon-sonnb_xengallery.xml"
+3. Go to User Group Permission and add Can Like, Can Comment permission for your users.
+4. Clear cache (Cloudflare,...) to remove cached js files.
+5. You are done.

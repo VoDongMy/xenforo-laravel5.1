@@ -1,0 +1,399 @@
+Version 2.1.3, 10th April 2014
+- Added a check to remove XenGallery editor's button in Signature edit if they do not have permission to use.
+- Fixed wrongly checking for the background color of text watermark.
+- Fixed undefined class error while rebuilding Content's thumbnail if Attachment Store is not available.
+- Fixed endless loop in Location rebuild in some cases.
+- Fixed wrong link to change owner of photo in Overlay view.
+
+Version 2.1.2, 10th April 2014
+- Added option to change thumbnail size (large, medium and small). You need to rebuild contents with option "Rebuild Thumbnails" to make it effect old photos (Only works with Original Contents enabled).
+- Watermark will be applied to old photos if rebuild contents with option "Rebuild Thumbnails" selected (Only works with Original Contents enabled).
+- Removed low resolution sort icons. Dropdown menu is now used instead.
+- Improved photo's bbcode. Photos now are shown in overlay.
+- Improved the watermark option checking.
+- Improved camera list grid.
+- Added a check if Soapclient is enabled which is required for Amazon API.
+- Added a check in user's watermark setting.
+- Improved content's inline editing when click on "More options..."
+- Decreased the number of photos per time in importers to prevent issues on some cases.
+- Fixed thumbnail creation size in case it exceeds user's limit.
+- Fixed issue with text watermark
+- Fixed issue cannot remove tagged person from editing form.
+- Fixed issue Collection page missing items.
+- Other bug fixes and improvements.
+
+Version 2.1.1, 8th April 2014
+- Added validation for watermark settings to prevent invalid values
+- Removed background for comment overlay and use the default background instead to compatible with different styles
+- Added "Gallery" prefix for page which is selected as index page.
+- Fixed some compatibility issues with PHP 5.2.x
+- Fixed issue while upload photo with option "resize" enabled.
+- Fixed issue while upload photo with "Text watermark" enabled and the FreeType extension enabled. 
+	It is recommended you to have GD and FreeType extension enabled to calculate the overlay text width more accurate.
+- Fixed issue no photos while viewing camera page.
+- Fixed issue select cover content does not work while creating new album.
+- Fixed other minor bugs.
+
+Version 2.1.0 Quick fixes, 8th April 2014
+- Fix issue while creating/deleting album.
+- Fix issue while deleting content.
+- Fix compatibility issue with PHP 5.2.x
+
+Version 2.1.0, 7th April 2014
+- Added ability to integrate Amazon Affiliate Program with camera view page. 
+	There is a "Buy this camera" button in camera page, this page will show all cameras related in Amazon. 
+	You can earn money if they buy any camera. Ref: https://affiliate-program.amazon.com/gp/associates/join/landing/main.html
+- Added Watermark feature.
+- Added option to choose what to be shown on gallery index
+- Added option to disable original photos
+- Added option to allow resize photos to match user's permission settings if they are uploading a photos exceed thier settings.
+- Added permissions allow to change content's owner and album's owner.
+- Added "Rebuild location" which allow rebuild location's coordinates for those missing.
+- Added ability to tag user in comments and description (XF 1.2+)
+- Added ability to inline edit content's description and fields, not need to reload page.
+- Added XenMediaGallery importer.
+- Added size option for Photo/Album bbcode.
+- View count/Like Count/Comment count on Grid now optimized with K, M, B... to save the spaces.
+- Custom fields which are URL type are now clickable.
+- Added option to allow use photo's filename as photo's title upon uploading.
+- Added option allow import from thread directly saved to Attachment Store.
+- Added option allow import a thread multiple times.
+- Added option to hide content's title in widget.
+- Added option to hide/show privacy on uploading window.
+- EXIF rotation while photo uploaded.
+- Brand new icons for all current icons.
+- Added Style Property option allow auto trigger fullscreen if users go directly to the content's URL.
+- Increased photo's large size to 1280 (Previously 960).
+- Optmized video's playback display.
+- Optimized related contents, they are now shown in direction of sorted albums.
+- Optimized and refactored codes.
+- Bug fixes.
+- Other implementations and improvements.
+
+Version 2.0.6, 13th January 2014
+- Added a new option "Hide Author Information" for album/content/photo/video widget. This will hide author and counter information, only title is visible.
+- Added privacy settings for new photos/videos in album's edit page, add photos page and add videos pages. This will help users to bulk set privacy for newly added photos.
+- Added content sort to album view. Sorting is now being saved to cookie, this helps users to use the gallery as the way they sort it.
+- Minor changes and bug fixes.
+
+Version 2.0.5, 6th January 2014
+- Added Widget for Videos.
+- Added Widget for Contents (Photos and Videos)
+- Added sort option: Recently Liked
+- Added widget's option: Disable widget's wrapper. This option will disable widget's wrapper.
+- Added option to disable photo upload and video embed during album creation. 
+	This is useful for busy forums which have delay on processing. 
+	Enable this option to prevent timeout while creating album if users upload lot of photos so prevent duplicate albums if users click saving several times.
+- Added signature's permissions for XenGallery's bbcode: photo, album, video.
+- Added permission allow users to permanent delete their albums and contents.
+- Added Javascript handling to fit grid items based on browser's width.
+- Other implementations and bug fixes.
+
+Version 2.0.4, 26th December 2013
+- XenMedio Pro importer is ready (Note: Only media sites configured in XenForo will be import).
+- Fix issue with XenMedio Free importer while importing comments
+- Other bugs fixes.
+
+Version 2.0.3, 20th December 2013
+- Streams were not shown up in photo and video due to invalid variable name in template.
+- Videos were not visible on mobile overlay view because of wrong size calculation.
+- Streams in album were not deleted whenever album was deleted.
+- Remove page title in author's videos page.
+- Added ignore import photos if photo file is not correctly readable.
+- Added pagination in album edit page to prevent errors (reach php.ini limit) when your album contains too many photos and videos.
+- Fixed a major bug on album create/edit and on album photo/video adding.
+- Other bug fixes and implementations.
+
+Version 2.0.2, 17th December 2013
+- Added option for buttons in editor to avoid conflicting if you are using "BbCodes & Buttons Manager". This will be turn-off by default.
+- Fix case-sensitive issue with XenMedio importer
+- Fix issue while removing items from collection.
+- Wrong date in comment widget.
+
+Version 2.0.1, 16th December 2013
+- Fix error while adding a video to playlist.
+- Fix issue with thumbnail in comment widget.
+- Added ability for content's owner to see his contents if they are in moderation state.
+
+Version 2.0.0, 15th December 2013
+- Video embedding support
+- My Playlist: Help you collect videos that you like and watch it later.
+- Custom Fields: That can be apply to album, photo or video allow you to show more information.
+- Support retain IDs while importing
+- Moved UserAlbum and Thread importer to "Import External Data".
+- Added XenMedio importer (free version).
+- Option to crop and move gallery's cover.
+- Improved experiencing on Mobile Devices while viewing photos, videos.
+- Added 2 buttons in editor. One for album and another for photos, video. It accepts ID or complete URL. (XenForo 1.2 only).
+- Improved maps on location index, location view and location edit.
+- Added Clusters for location index.
+- Improvements for mobile view
+- Other implementation and bug fixes.
+
+Version 1.1.4, 10th October 2013
+- Fix error when importing thread to gallery in some cases.
+- Fix error when adding photo in some rarely cases due to missing Model EXIF index.
+- Fix privacy issue when viewing author's photos and albums.
+
+Version 1.1.3, 28th September 2013
+- Issue on album select while adding photo. It did not work if there is only 1 album in the list.
+- Fixed issue with photo moving permission checking.
+
+Version 1.1.2, 19th September 2013
+- Added Title field for photo.
+- Minor changes.
+
+- Removed location edit button in overlay mode.
+- Fixed some issues related to opening overlay and tagging in widget/profile/new photos due to incompatible of edit location in overlay.
+
+Version 1.1.1, 19th September 2013
+- Added ability to click a position on map while editing album/photo's location.
+- Added indicator if photo is an animated GIF.
+- Added edit location and privacy link to overlay.
+- Other minor changes.
+
+- Fixed RTL issues with overlay and related photo's navigator.
+- Fixed issue with widget comment if thumbnail's size are not configured.
+- Fixed issue while rebuilding photos and albums
+- Fixed issue while deleting/rotating photo related to new integration.
+- Other minor bug fixes.
+
+
+Version 1.1.0, 18th September 2013
+- Added integration with [bd] Attachment Store. You are know able to store your photos on cloud.
+	Please be aware that store photos on the cloud might not the best way for your XenGallery.
+	It will require more times to rebuild photo's data, while uploading photos, rotate photos....
+	Make sure that you really want to use this.
+- Added Overlay feature. Photos now are displayed using overlay. You could turn this option off from Style Properties -> sonnb - XenGallery.
+	Some special functionality of the overlay:
+		+ Wipe to right on the comment sidebar to hide comment bar. An icon would be displayed that help you show comment sidebar up again.
+		+ On small browser's window or on mobile, the comment bar is hidden by default.
+		+ On mobile devices: Wipe left to show previous photo, Wipe right to show next photo.
+		+ Next/Prev for next and previous photos.
+- Modified the templates to display well on dark styles.
+- Changed widget's thumbnail size with resample method to make the widget's thumbnail look good.
+- Double check for missing items in widget if users do not have permission to view them.
+- Style Properties for no-image path.
+- Added Watch/Unwatch link in photo view and album view. You will be automatically marked as watched if:
+	+ Like a photo/album
+	+ Comment on a photo/album.
+	+ Add photos to a album.
+- Changed size of user's cover for better look. Height is now in range of 200px-400px.	
+- Improved experiences while loading grid's thumbnail.
+- Lot of minor changes.
+	
+- Fixed upload issue with AJAX
+- Fixed issue on iOS devices 6.0 and newer.
+- Fixed issue while saving location on photo edit page and album edit page.
+- Several minor fixes.
+
+
+Version 1.0.17, 31st August 2013
+- Added option allow to specify how many related photos would be shown in photo view.
+- Added option that allow specify how many comments would be pre-loaded in album/photo view.
+- Added option to enable/disable Category and Collection feature.
+- Added option to allow show current user's activity location in gallery. (Cost more queries).
+- Added option to enable/disable RSS feature.
+- Added option to allow [IMG] and [MEDIA] BBCode in comments.
+- Added a privacy option: "People I follow".
+- Added feature to filter nudity photos and apply action to those photos (might give false positive results).
+- Added option to limit Photo's size/width/height (global).
+- Minor changes in photo upload JS
+- Minor code changes.
+
+- Fixed issue with streams: Cannot add streams, stream detail only shows latest added item.
+- Fixed several minor issues.
+
+Version 1.0.16, 24th August 2013.
+- Added "Reset Privacy" feature in "Manage Albums" allow admin to massive reset album's privacy.
+- Changed the way to check for camera name in EXIF to prevent duplicate (wrong) camera's name. 
+	Ex: "Nikon D70" instead of "Nikon Cooperation Nikon D70".
+	You should rebuild Photos with option "Rebuild EXIF" checked to rename the camera's name.
+- Changed widget layout for albums and photos to make sure all item has same width and height.
+- Added thumbnail's width and height options for Comment widget.
+- Added Meta tags for Facebook on Photo View and Album View (even facebook integration was not configured).
+- Added Twitter Card for Photo View (Photo mode) and Album View (Gallery Mode).
+	You might need to request approval for your domain before your card could be shown up in Twitter.
+	Check out more information at: 	https://dev.twitter.com/docs/cards/validation/validator -> "Validate & Apply".
+- Changed Inline moderation checkbox on photos. It is now only visible if you hover the photo.
+- Added option which allow admin to input their own Google Map API Key.
+	API key for Google Map is not required but by providing API key, you are able to: 
+		- Manage your Map statistics.
+		- By default, without API or free API, it would limit you 25,000 map loads per day. 
+		(Reference: https://developers.google.com/maps/faq?csw=1#usagelimits). 
+		If your usage reaches this limit. You could pay for more by using API Key.
+
+	You could get a API Key at: https://code.google.com/apis/console#:access
+	Please make sure that you provide a valid API Key or leave it empty.
+- Small changes on uploading photo page that only fill the progress bar to 100% only when the photo was fully loaded.
+
+- Fixed bug on comment rendering.
+- Fixed bug related to displaying Maps
+- Fixed bug on Widget: Wrong date for "random" and "latest added".
+- Fixed bug on Widget: Category and Collection option did not work.
+- Fixed issue tags were not removed in album/photo edit page.
+- Fixed wrong user for new photos added to other users albums.
+- Fixed wrong pagination in Camera list.
+- Fixed error when viewing a category if it was deleted.
+- Fixed EXIF overlay displays not nice on some style
+- Fixed issue on viewing user's likes page.
+- Fixed issue while rotating photo using ImageMagick
+- Fixed no pagination on camera view if Auto Scroll is disabled.
+- 
+
+Version 1.0.15, 20th August 2013.
+- Changed option layout.
+- Added options to allow administrator to set default album/photo's privacy on uploading.
+	These options would be overridden by user's setting.
+- Other minor changes.
+
+- Fixed inline moderation issue on deleting and moving.
+- Fixed issue with vB User Album importer
+- Catched issues with EXIF rebuild.
+- Other minor fixes.
+
+Version 1.0.14, 17th August 2013.
+- Added option to thread importer (front-end) allow users import attachments to their existing albums.
+- Added to navigation "Explore user's album" allow users to input an username and jump to that user's page.
+
+- Fixed issue with inline moderation in XF 1.2 due to incompatibility with JS in XF 1.2
+- Fixed issue with some invalid EXIF data.
+- Fixed issue with adding Camera data.
+- Minor fixing.
+
+Version 1.0.13, 15th August 2013
+- Fixed issue unable to comment when click on "comment" button. Please clear JS files (browser's cache, CDN cache) to remove cached JS files.
+- Added installation check to check for tables and fields, just in case someshow it was missed from the last installation.
+
+Version 1.0.12 Fix 2, 15th August 2013
+- Fix "failed to open stream: Permission denied" when users trying to view alert. 
+	This error because of a debug line was not removed. 
+	This issue occurs to customers who have limited write permission on the server. 
+
+Version 1.0.12 Fix 1, 14th August 2013
+- Fix error while trying to create new category
+- Fix wrong counting number of album on album deletion in "Manage Album" (AdminCP).
+- Fix wrong image when requesting original image.
+
+Version 1.0.12, 14th August 2013
+- Added Permission for category. You could configure who can view, who can post.
+- Added option to add some copyright/TOS text to gallery pages. (Appears above xengallery's default copyright).
+- Added option to enable advanced photo search fields (ISO, Shutter Speed,...). 
+	This option requires rebuild search index for Photo.
+- Added inline moderation for photos (album view) and comments (photo view, album view). 
+	This feature is visible to users who have "Delete any photo" or "Delete any comment" only.
+- Minor code and template changes	
+
+- Fixed issue camera was not inserted to photo_camera table during rebuild photo with "rebuild EXIF" option enabled.
+	This lead to an issue if user click on camera's name in photo view.
+	This requires you rebuild photo's data with "rebuild EXIF" option checked.
+- Fixed undefined index error relating to disable location option. 
+	You would not get this issue if you do not checked "Disable Location Page" option.
+- Fixed some issues with External Importers as sometime values are not bound into the queries.
+
+Version 1.0.11, 11th August 2013
+- New Importers have been added.
+	+ PhotoPost vBGallery 2.3.x+ (vB 3.7.x+) -> XenGallery
+	+ vB 3.8.x albums -> XenGallery
+	+ PhotoPlog Pro 2.1.4+ -> XenGallery
+	+ [DBTech] Gallery Pro 1.2.8 (vB 4.x) -> XenGallery
+- RSS feed for gallery index and album index.
+- Added album/photo/comment's actions to XenForo IP logs.
+- Added an option to add user's page to breadcrumb before album's name.
+- Added options to disable camera and location page and their functionalities.
+- Minor code and template changes.
+
+- Fixed error when click on X icon in album management.
+- Fixed error when adding/rebuild photo with invalid format in EXIF's datetime information.
+
+Version 1.0.10, 07th August 2013
+- New Importers have been added.
+	+ PhotoPost vBGallery 3.x (vB 4.x) -> XenGallery
+	+ PhotoPost Pro 8.4 (vB Integration) -> XenGallery
+	+ PhotoPost Pro 8.4 (xF Integration) -> XenGallery
+	+ XenGallery -> XenGallery.
+- Added backend Albums Management:
+	+ Mass delete albums
+	+ Mass categorize albums
+	+ Mass assign albums to collection.
+- Added option to show Thread Import (backend) in specified nodes.
+- Added rebuild EXIF option on Photo Cache Rebuild album. This option is useful after importing.
+- Minor code changes and template changes
+- Fixed wrong pagination for category_view
+- Removed like link and stream delete link for nonpermissive users to avoid google crawl error reports.
+- Minor bug fixes.
+
+- Copyright removal price was decreased to 40$.
+
+Version 1.0.9, 26th July 2013
+- Added IP.Gallery 5.0.2+ importer to convert your Categories, Albums, Photos and Comments from IPB.Gallery version 5.0.2+ to XenGallery.
+	You must previously imported from IPB and you must have the archived import log to perform this action.
+- Added Thread Import Permission for users import their own threads to Gallery. 
+	There are two permissions: Import Own Threads and Import Any Thread(Mod Permission). 
+	Users are able to edit album's title, category, import comments and choose which attachments are going to be imported.
+	Please note that for big threads with thousand of attachments and posts, it would use noticeable performance so only assign this permission
+	to the User Group that you trust.
+	+ A thread only can be imported once.
+	+ Threads without attachments could not be imported.
+- Added alt attribute to img tags (using album/photo's descriptions).
+- Other minor changes.
+
+- Fixed undefined index issue with newsfeed for albums.
+- Fixed album view and photo view issue in some dark template.
+- Other minor bug fixes.
+
+Version 1.0.8, 22nd July 2013
+- Added Thread Importer. Convert your existing threads in specific forums into Albums. In case you have some forums that allow users
+	to upload their pictures this function would be come very useful. All attached images inside thread would become photos, all posts 
+	would become comments.
+- Added "View Original Photo" link to view original photo in browser (Use same privacy with "Download Original Photo").
+- Added Options to require users select a category (if any) while creating album.
+- Added Title limit option to Photo Widget and Album Widget to wrap long album title
+- Other minor changes.
+
+- Fixed Grammar error on alerts.
+- Fixed double scroll for long category list (In navigation bar).
+- Other minor fixes.
+
+Version 1.0.7, 20th July 2013
+- Added vB4 Album importer to XenGallery. To use the importer: AdminCP -> Tools -> Import External Data -> vBB 4.x => sonnb - XenGallery
+	You must previously imported from vB4 and you must have the archived import log to perform this action.
+- Added Search function for albums and photos. YOu need to rebuild Albums and Photos to add existing Albums and Photos to search index.
+- Added rebuild User album count and photo count during User Rebuild.
+- Other minor changes
+
+- Fixed Right To Left issue for: photo view's arrows and photo rotate buttons order (left, right).
+- Fixed wrong overlay for photo and album edit. Should not redirect to regular page.
+- Fixed Soft deleted photo still shown in Album edit to normal users.
+- Fixed photo position counting (from 0 instead of 1).
+- Disabled auto check the "Direct tagging" in user's setting page that made confusing to users.
+- Fixed Grammatical Error On Alerts
+- Fixed error while Hard delete photo/album
+- Fixed error while rotate photo if has Externaldataurl configured
+- Fixed typos in [xfru] User Album Importer
+- Fixed "no cover photo" if users delete cover photo.
+- Fixed "Undefined index: album_state" while listing user's likes.
+- Fixed wrong direction of Photo rotating.
+- Splited Camera Data to single SQL query to fix error during installation for some users.
+
+
+Version 1.0.6, 16th July 2013
+- Added an option in Style Properties to show User's Gallary Page instead of User Card when click on username
+
+Version 1.0.5, 15th July 2013
+- Add "Edit" button on breadcrumb on photo view page.
+- Remove "Create Album" button to users who does not have permission to create album
+- Tag popup issue on small photo
+- Ajax edit for newly inserted comments
+- "Unspecific error" message on comment full link edit (standalone page) instead of redirect back to the comment.
+- Error on album/photo's privacy saving
+
+Version 1.0.4, 15th July 2013
+- Fix javascript issue on XF 1.2
+- Fix issue while uploading photo with EXIF.
+- Added 2 permissions: Can Like and Can Comment. These permission's purposes to prevent awaiting 
+	users to comment/like user's photos/albums. You might use it to prevent specified group from 
+	commenting and liking.
+
+Version 1.0.3, 13th July 2013
+- Initital version

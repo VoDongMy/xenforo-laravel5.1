@@ -1,0 +1,26 @@
+vendor/
+node_modules/
+
+# Laravel 4 specific
+bootstrap/compiled.php
+app/storage/
+
+# Laravel 5 & Lumen specific
+bootstrap/cache/
+storage/
+.env.*.php
+.env.php
+.env
+.env.example
+/app/config/env.php
+/vendor
+composer.phar
+composer.lock
+.DS_Store
+Thumbs.db
+/nbproject
+/app/config/database.php
+/temp
+/public/html/.idea
+/public/upload
+/app/storage/debugbar

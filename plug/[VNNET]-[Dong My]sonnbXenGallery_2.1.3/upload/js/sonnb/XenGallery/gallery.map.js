@@ -1,0 +1,11 @@
+
+/**
+ * @category    XenForo
+ * @package     sonnb - XenGallery
+ * @version     2.1.3
+ * @copyright:  sonnb
+ * @link        www.sonnb.com
+ * @version     One license is valid for only one nominated domain.
+ * @license     You might not copy or redistribute this addon. Any action to public or redistribute must be authorized from author
+ */
+!function(e,t,n,r){XenForo.XenGalleryLoadMap=function(e){this.__construct(e)};XenForo.XenGalleryLoadMap.prototype={__construct:function(r){var i;i=n.createElement("script");i.type="text/javascript";i.src=r.data("loadurl")+"&callback=loadMap";n.body.appendChild(i);i=n.createElement("script");i.type="text/javascript";i.src="js/sonnb/XenGallery/jquery.geocomplete.js";n.body.appendChild(i);i=n.createElement("script");i.type="text/javascript";i.src="js/sonnb/XenGallery/gallery.map.js";n.body.appendChild(i);t.loadMap=function(){var t=e('input[name="location_lat"]',r),i=e('input[name="location_lng"]',r),s=e("#ctrl_location_edit",r),o=s.val(),u=t.val(),a=i.val(),f,l=new google.maps.Geocoder,c=new google.maps.Map(n.getElementById("mapOverlay"),{center:new google.maps.LatLng(u.length?u:34,a.length?a:-118),zoom:8,mapTypeId:google.maps.MapTypeId.ROADMAP});if(s.val()){f=new google.maps.Marker({map:c,position:new google.maps.LatLng(u.length?u:34,a.length?a:-118),title:o})}s.geocomplete().bind("geocode:result",function(e,n){e.preventDefault();if(n.geometry.location.lat()){t.val(n.geometry.location.lat())}if(n.geometry.location.lng()){i.val(n.geometry.location.lng())}if(f){f.setMap(null)}f=new google.maps.Marker({map:c,position:n.geometry.location,title:n.formatted_address});c.setCenter(n.geometry.location);return false});google.maps.event.addListener(c,"click",function(e){if(f){f.setMap(null)}f=new google.maps.Marker({position:e.latLng,map:c});if(e.latLng.lat()){t.val(e.latLng.lat())}if(e.latLng.lng()){i.val(e.latLng.lng())}l.geocode({latLng:e.latLng},function(e,t){if(t==google.maps.GeocoderStatus.OK){s.val(e[0].formatted_address)}})})}}};XenForo.register("form.locationForm","XenForo.XenGalleryLoadMap")}(jQuery,this,document)

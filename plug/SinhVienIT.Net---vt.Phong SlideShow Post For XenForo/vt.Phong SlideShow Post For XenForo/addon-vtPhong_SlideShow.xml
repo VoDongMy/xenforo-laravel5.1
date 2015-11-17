@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<addon addon_id="vtPhong_SlideShow" title="vt.Phong SlideShow Post For XenForo" version_string="1.0" version_id="1" url="" install_callback_class="vtPhong_Install" install_callback_method="install" uninstall_callback_class="vtPhong_Install" uninstall_callback_method="uninstall">
+  <admin_navigation/>
+  <admin_permissions/>
+  <admin_style_properties/>
+  <admin_templates>
+    <template title="vtPhong_forum_options_add_slide"><![CDATA[<xen:checkboxunit label="vt.Phong : Lets add slides:">
+    <xen:option name="can_add_slide" label="vt.Phong : There can add slides to this forum." selected="{$forum.can_add_slide}">
+        <xen:hint>vt.Phong : Select an area to be allowed to add slide into this forum.</xen:hint>
+    </xen:option>
+</xen:checkboxunit>
+]]></template>
+  </admin_templates>
+  <admin_template_modifications/>
+  <code_events/>
+  <code_event_listeners>
+    <listener event_id="load_class_controller" execute_order="10" callback_class="vtPhong_Listener" callback_method="loadClassControllers" active="1" hint="" description=""/>
+    <listener event_id="load_class_datawriter" execute_order="10" callback_class="vtPhong_Listener" callback_method="loadClassDataWriter" active="1" hint="" description=""/>
+    <listener event_id="template_create" execute_order="10" callback_class="vtPhong_Listener" callback_method="templateCreate" active="1" hint="" description=""/>
+    <listener event_id="template_hook" execute_order="10" callback_class="vtPhong_Listener" callback_method="templateHook" active="1" hint="" description=""/>
+  </code_event_listeners>
+  <cron/>
+  <email_templates/>
+  <email_template_modifications/>
+  <optiongroups>
+    <group group_id="vtPhong_slideshow" display_order="1" debug_only="0"/>
+    <option option_id="Choose_style" edit_format="radio" data_type="string" can_backup="1">
+      <default_value>azur/galleria.azur.min.js</default_value>
+      <edit_format_params>azur/galleria.azur.min.js=Style 1
+twelve/galleria.twelve.min.js=Style 2</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="vtPhong_slideshow" display_order="1"/>
+    </option>
+    <option option_id="maxPicInSlide" edit_format="spinbox" data_type="unsigned_integer" can_backup="1">
+      <default_value>20</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="vtPhong_slideshow" display_order="1"/>
+    </option>
+  </optiongroups>
+  <permissions>
+    <permission_groups/>
+    <permissions/>
+    <interface_groups/>
+  </permissions>
+  <phrases>
+    <phrase title="option_Choose_style" version_id="0" version_string="1.0"><![CDATA[Select Style SlideShow]]></phrase>
+    <phrase title="option_Choose_style_explain" version_id="0" version_string="1.0.0"><![CDATA[]]></phrase>
+    <phrase title="option_group_vtPhong_slideshow" version_id="0" version_string="1.0"><![CDATA[vt.Phong SlideShow Post For XenForo]]></phrase>
+    <phrase title="option_group_vtPhong_slideshow_description" version_id="0" version_string="1.0"><![CDATA[]]></phrase>
+    <phrase title="option_maxPicInSlide" version_id="0" version_string="1.0"><![CDATA[Max Images For Slide]]></phrase>
+    <phrase title="option_maxPicInSlide_explain" version_id="0" version_string="1.0.0"><![CDATA[]]></phrase>
+  </phrases>
+  <route_prefixes/>
+  <style_properties/>
+  <templates>
+    <template title="vtPhong_add_slide_show_template" version_id="1" version_string="1.0"><![CDATA[<xen:if is="{$forum.can_add_slide}">
+<h3 class="textHeading">Create slideshows for posts</h3>
+<dl class="ctrlUnit">
+		<dt><label for="ctrl_poll_question">List of the image slideshow:</label></dt>
+		<dd>
+	
+	<ul class="slideResponseContainer">
+				<xen:if is="{$slides}">
+					<xen:foreach loop="$slides" value="$slide">
+						<li>
+							<input type="text" value="{$slide.url_slide}" name="slide[url][]" class="textCtrl" id="ctrl_poll_question"/> <br/>
+							<input type="text" value="{$slide.title_slide}" name="slide[title][]" class="textCtrl" id="ctrl_poll_question"/> <br/>
+							<input type="text" value="{$slide.des_slide}" name="slide[des][]" class="textCtrl" id="ctrl_poll_question"/> <br/>
+							<input type="button" value="Delete image" class="button removePic"/>
+							<br/><br/>
+							
+						</li>
+					</xen:foreach>
+				</xen:if>
+				<li>
+					<input type="text" name="slide[url][]" class="textCtrl" id="ctrl_poll_question" placeholder="Url images :"/> <br/>
+					<input type="text" name="slide[title][]" class="textCtrl" id="ctrl_poll_question" placeholder="Title images :"/> <br/>
+					<input type="text" name="slide[des][]" class="textCtrl" id="ctrl_poll_question" placeholder="Descriptions images :"/><br/>
+				</li>
+			</ul>
+			<input type="button" value="Add new image" class="button smallButton FieldAdder JsOnly" data-source="ul.slideResponseContainer li" data-maxfields="{$xenOptions.maxPicInSlide}" />		
+</dd></dl>
+<script type="text/javascript">
+	$('.removePic').click(function(){
+		$(this).parent().remove();
+	});
+</script>
+</xen:if>]]></template>
+    <template title="vtPhong_message_slide" version_id="1" version_string="1.0"><![CDATA[<xen:if is="{$slides} AND {$forum.can_add_slide}">
+	<xen:if is="{$thread.first_post_id} == {$message.post_id}">
+		
+		<xen:require js="js/galleria/galleria-1.3.5.js?v=1" />
+		<xen:require css="vtPhong_slide.css" />
+		<script type="text/javascript">
+			Galleria.loadTheme('js/galleria/themes/{$xenOptions.Choose_style}');
+			Galleria.configure({
+			    transition: 'fade',
+			    imageCrop: true
+			});
+			Galleria.run('#galleria',{
+			        extend: function() {
+			            	var gallery = this;
+			            	$('.fullscreen').click(function() 
+			            	{
+				        	gallery.clickfullsrceen(); // call the play method
+		            		});
+		            		$('.expand').click(function() 
+			            	{
+				        	gallery.clickfullsrceen(); // call the play method
+		            		});
+		        	}
+		        });
+		</script>
+
+		<div class="display_slide_vtphong">
+			<xen:foreach loop="$slides" value="$slide">
+				<div class="img_slide_{$slide.id} div_slide" >
+					<img class="expand" src="styles/vtPhong/image/expand.png">
+					<img id="{$slide.id}" class="fullscreen" src="{$slide.url_slide}" title="fullscreen" height="500" width="770">	
+					<span class="description">
+						{$slide.des_slide}
+					</span>
+				</div>
+			</xen:foreach>
+		</div>
+		
+		<div id="galleria" class="galleria">
+			<xen:foreach loop="$slides" value="$slide">
+				<img src="{$slide.url_slide}" data-title="{$slide.title_slide}" data-description="{$slide.des_slide}">
+			</xen:foreach>
+		</div>
+
+		<input type="hidden" value="{$data_min_max.min_id}" id="first" />
+		<input type="hidden" value="{$data_min_max.max_id}" id="end" />
+		<input type="hidden" value="0" id="curr_view" />
+		<input type="hidden" value="0" id="last_view" />
+		<script type="text/javascript">
+			var current = 0;
+			var current_view = 0;
+			var sub = 0;
+			var ifirst = 0
+			$('.fullscreen')
+				.hover(function(){
+				   current = $(this).attr('id');
+
+				   if ($('#last_view').val()==0 && $('#curr_view').val()==0)
+				   {
+						$('#curr_view').val(current);
+						$('#last_view').val(current);
+						ifirst = current - $('#first').val();
+						if (ifirst)
+						{
+							goView(ifirst);
+						}
+				   }
+				   else
+				   {
+						if (current != $('#curr_view').val())
+						{
+							if ($('#curr_view').val() == $('#last_view').val())
+							{
+								$('#curr_view').val(current);
+							}
+							else
+							{
+								$('#last_view').val($('#curr_view').val());
+								$('#curr_view').val(current);
+							}
+							sub = $('#curr_view').val() - $('#last_view').val();
+
+							goView(sub);
+						}
+				   }
+				})
+				.mouseenter(function(){
+					$('.expand').show();
+				})
+				.mouseleave(function(){
+					$('.expand').hide();
+				});
+				
+			$('.expand')
+				.mouseenter(function(){
+					$(this).show();
+				});
+
+			function goView(step)
+			{
+				if (step>0)
+				{
+					for (var i=1;i<=step;i++)
+					{
+						$('.galleria-image-nav-right').click();
+					}
+				}
+				else
+				{
+					for (var i=1;i<=Math.abs(step);i++)
+					{
+						$('.galleria-image-nav-left').click();
+					}
+				}
+			}
+		</script>
+	</xen:if>
+</xen:if>]]></template>
+    <template title="vtPhong_slide.css" version_id="1" version_string="1.0"><![CDATA[#galleria{display: inline-block;width: 150px; height: 150px; background: #000; margin-left: -10000px;
+margin-top: -150px;}
+.display_slide_vtphong
+{
+text-align: center;
+}
+.display_slide_vtphong .div_slide
+{
+margin-bottom: 25px;
+width: 770px;
+display: inline-block;
+background: gainsboro;
+padding-bottom: 10px;
+}
+.display_slide_vtphong .div_slide .expand{
+width: 20px;
+height: 20px;
+background: gray;
+opacity: 1;
+float: right;
+padding: 4px;
+position: absolute;
+margin-left: 742px;
+display:none;
+}
+.display_slide_vtphong .div_slide img
+{
+cursor:pointer;
+}
+.display_slide_vtphong .div_slide .description
+{
+display: inherit;
+font-size: 12px;
+
+padding-top: 8px;
+}
+<xen:if is="{xen:property enableResponsive}">
+@media (max-width:960px)
+{
+	.Responsive .display_slide_vtphong .div_slide
+	{
+		width:590px;
+	}
+	.Responsive .display_slide_vtphong .div_slide img.fullscreen
+	{
+		width: 590px;
+		height: auto;
+	}
+}
+@media (max-width:768px)
+{
+	.Responsive .display_slide_vtphong .div_slide
+	{
+		width:440px;
+	}
+	.Responsive .display_slide_vtphong .div_slide img.fullscreen
+	{
+		width: 440px;
+		height: auto;
+	}
+}
+@media (max-width:610px)
+{
+	.Responsive .display_slide_vtphong .div_slide
+	{
+		width:350px;
+	}
+	.Responsive .display_slide_vtphong .div_slide img.fullscreen
+	{
+		width: 350px;
+		height: auto;
+	}
+}
+@media (max-width:515px)
+{
+	.Responsive .display_slide_vtphong .div_slide
+	{
+		width:260px;
+	}
+	.Responsive .display_slide_vtphong .div_slide img.fullscreen
+	{
+		width: 260px;
+		height: auto;
+	}
+}
+@media (max-width:480px)
+{
+	.Responsive .display_slide_vtphong .div_slide
+	{
+		width:100%;
+	}
+	.Responsive .display_slide_vtphong .div_slide img.fullscreen
+	{
+		width: 100%;
+		height: auto;
+	}
+}
+</xen:if>]]></template>
+  </templates>
+  <public_template_modifications>
+    <modification template="message" modification_key="message_slideshow" description="Thêm slideshow bài đầu tiên" execution_order="10" enabled="1" action="str_replace">
+      <find><![CDATA[<xen:if is="{$message.last_edit_date}">]]></find>
+      <replace><![CDATA[<!-- Start: vtPhong slideshow for XenForo -->
+<xen:include template="vtPhong_message_slide" />
+<!-- End: vtPhong slideshow for XenForo -->
+$0]]></replace>
+    </modification>
+    <modification template="post_edit" modification_key="post_edit_slide" description="Thêm quản lý slide khi edit post" execution_order="10" enabled="1" action="str_replace">
+      <find><![CDATA[<xen:if is="{$visitor.user_id}">
+		<fieldset>
+			<dl class="ctrlUnit">
+				<dt>{xen:phrase options}:</dt>
+				<dd><ul>
+					<li><xen:include template="helper_thread_watch_input" /></li>
+				</ul></dd>
+			</dl>
+		</fieldset>
+	</xen:if>]]></find>
+      <replace><![CDATA[$0
+<!-- Start: vtPhong slideshow for XenForo -->
+<xen:hook name="post_edit_fields_extra" params="{xen:array 'slides={$slides}'}"/>
+<!-- End: vtPhong slideshow for XenForo -->]]></replace>
+    </modification>
+  </public_template_modifications>
+  <bb_code_media_sites/>
+</addon>

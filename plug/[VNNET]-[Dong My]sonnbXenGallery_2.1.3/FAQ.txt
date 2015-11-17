@@ -1,0 +1,12 @@
+1. During the installation, you get: An exception occurred: Mysqli prepare error: MySQL server has gone away
+	- You might want to increase "max_allowed_packet" setting in your mysql setting (my.conf). 
+	During the installation, it would import camera data so this value need a little higher.
+	
+2. How could I change the grid size? It leaves some blank area on my Album list and Album view.
+	- You need to change Grid's width to match your style's width. Please go to Style Properties => sonnb - XenGallery - Grid Layout
+	
+3. After my threads/old gallerys were imported. I cannot see them, where are they?
+	- It is required to rebuild Albums and Contents to re-caculate information after importing. Please go to: AdminCP -> Tools -> Rebuild Caches. Find Rebuild Albums and Rebuild Contents.
+	
+4. More questions or bug report? 
+	- Please go to: http://www.sonnb.com/forums/xengallery.23/

@@ -1,0 +1,958 @@
+<?xml version="1.0" encoding="utf-8"?>
+<addon addon_id="TaigaChat" title="TaigaChat Pro" version_string="1.0.4" version_id="28" url="" install_callback_class="Dark_TaigaChat_Install" install_callback_method="install" uninstall_callback_class="Dark_TaigaChat_Uninstall" uninstall_callback_method="uninstall">
+  <admin_navigation/>
+  <admin_permissions/>
+  <admin_style_properties/>
+  <admin_templates>
+    <template title="dark_option_template_taiga"></template>
+  </admin_templates>
+  <code_events/>
+  <code_event_listeners>
+    <listener event_id="load_class_datawriter" execute_order="10" callback_class="Dark_TaigaChat_EventListener_Listener" callback_method="LoadClassDataWriter" active="1" description=""/>
+    <listener event_id="navigation_tabs" execute_order="10" callback_class="Dark_TaigaChat_EventListener_NavigationTabs" callback_method="listen" active="1" description="Adds navbar tab"/>
+    <listener event_id="template_create" execute_order="10" callback_class="Dark_TaigaChat_EventListener_Listener" callback_method="TemplateCreate" hook="433" active="1" description=""/>
+    <listener event_id="template_hook" execute_order="10" callback_class="Dark_TaigaChat_EventListener_Listener" callback_method="TemplateHook" active="1" description=""/>
+    <listener event_id="widget_framework_ready" execute_order="999" callback_class="Dark_TaigaChat_EventListener_Listener" callback_method="WidgetFrameworkReady" active="1" description=""/>
+  </code_event_listeners>
+  <cron>
+    <entry entry_id="taigachatCleanUpDaily" cron_class="Dark_TaigaChat_CronEntry_CleanUp" cron_method="runDailyCleanUp" active="1"><![CDATA[{"day_type":"dom","dom":["-1"],"hours":["4"],"minutes":["0"]}]]></entry>
+    <entry entry_id="taigachatPublicHtml" cron_class="Dark_TaigaChat_CronEntry_CleanUp" cron_method="rebuildPublicHtml" active="1"><![CDATA[{"day_type":"dom","dom":["-1"],"hours":["-1"],"minutes":["0","5","10","15","20","25","30","35","40","45","50","55"]}]]></entry>
+  </cron>
+  <email_templates/>
+  <optiongroups>
+    <group group_id="taigaChat" display_order="99999" debug_only="0"/>
+    <option option_id="dark_taigachat_activity" edit_format="radio" data_type="string" can_backup="1">
+      <default_value>None</default_value>
+      <edit_format_params>Both={xen:phrase dark_show_threads_and_replies}
+Threads={xen:phrase dark_show_threads_only}
+None={xen:phrase dark_do_not_display_activity}</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="340"/>
+    </option>
+    <option option_id="dark_taigachat_activity_newtab" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>1</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="360"/>
+    </option>
+    <option option_id="dark_taigachat_activity_userid" edit_format="textbox" data_type="unsigned_integer" can_backup="1">
+      <default_value>0</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="350"/>
+    </option>
+    <option option_id="dark_taigachat_archivethread" edit_format="textbox" data_type="unsigned_integer" can_backup="1">
+      <default_value>0</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="510"/>
+    </option>
+    <option option_id="dark_taigachat_archiveuser" edit_format="textbox" data_type="unsigned_integer" can_backup="1">
+      <default_value>0</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="520"/>
+    </option>
+    <option option_id="dark_taigachat_bbcode" edit_format="radio" data_type="string" can_backup="1">
+      <default_value>Basic</default_value>
+      <edit_format_params>Full={xen:phrase dark_bbcode_full}
+Basic={xen:phrase dark_bbcode_basic}
+None={xen:phrase dark_bbcode_none}</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="310"/>
+    </option>
+    <option option_id="dark_taigachat_direction" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>true</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="110"/>
+    </option>
+    <option option_id="dark_taigachat_editside" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>1</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="220"/>
+    </option>
+    <option option_id="dark_taigachat_focusedrefreshtime" edit_format="spinbox" data_type="unsigned_numeric" can_backup="1">
+      <default_value>2</default_value>
+      <edit_format_params>min=0.4</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="114"/>
+    </option>
+    <option option_id="dark_taigachat_fullperpage" edit_format="spinbox" data_type="positive_integer" can_backup="1">
+      <default_value>75</default_value>
+      <edit_format_params>min=1</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="140"/>
+    </option>
+    <option option_id="dark_taigachat_height" edit_format="spinbox" data_type="positive_integer" can_backup="1">
+      <default_value>300</default_value>
+      <edit_format_params>min=10</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="120"/>
+    </option>
+    <option option_id="dark_taigachat_ignorehide" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>0</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="270"/>
+    </option>
+    <option option_id="dark_taigachat_imagemode" edit_format="radio" data_type="string" can_backup="1">
+      <default_value>ThumbZoom</default_value>
+      <edit_format_params>Link={xen:phrase dark_image_link}
+Zoom={xen:phrase dark_image_zoom}
+ThumbZoom={xen:phrase dark_image_thumbzoom}</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="320"/>
+    </option>
+    <option option_id="dark_taigachat_maxlength" edit_format="spinbox" data_type="positive_integer" can_backup="1">
+      <default_value>400</default_value>
+      <edit_format_params>min=1</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="150"/>
+    </option>
+    <option option_id="dark_taigachat_miniavatar" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>0</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="240"/>
+    </option>
+    <option option_id="dark_taigachat_motd" edit_format="textbox" data_type="string" can_backup="1" validation_class="Dark_TaigaChat_Option_Motd" validation_method="verifyOption">
+      <default_value>[b]Double click to edit MOTD![/b]</default_value>
+      <edit_format_params>rows=3
+inputclass=Elastic</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="710"/>
+    </option>
+    <option option_id="dark_taigachat_navtab" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>true</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="210"/>
+    </option>
+    <option option_id="dark_taigachat_popupenabled" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>1</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="215"/>
+    </option>
+    <option option_id="dark_taigachat_route" edit_format="select" data_type="string" can_backup="1">
+      <default_value>taigachat</default_value>
+      <edit_format_params>taigachat=/taigachat
+chat=/chat
+chatbox=/chatbox
+shoutbox=/shoutbox</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="410"/>
+    </option>
+    <option option_id="dark_taigachat_showalert" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>1</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="260"/>
+    </option>
+    <option option_id="dark_taigachat_sidebarperpage" edit_format="spinbox" data_type="positive_integer" can_backup="1">
+      <default_value>25</default_value>
+      <edit_format_params>min=1</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="130"/>
+    </option>
+    <option option_id="dark_taigachat_smilies" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>1</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="605"/>
+    </option>
+    <option option_id="dark_taigachat_speedmode" edit_format="radio" data_type="string" can_backup="1" validation_class="Dark_TaigaChat_Option_SpeedMode" validation_method="verifyOption">
+      <default_value>Disabled</default_value>
+      <edit_format_params>Enabled={xen:phrase dark_tc_enabled}
+Https={xen:phrase dark_https_compatibility_mode}
+Disabled={xen:phrase dark_tc_disabled}</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="15"/>
+    </option>
+    <option option_id="dark_taigachat_tabunfocusedrefreshtime" edit_format="spinbox" data_type="unsigned_numeric" can_backup="1">
+      <default_value>10</default_value>
+      <edit_format_params>min=1</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="119"/>
+    </option>
+    <option option_id="dark_taigachat_taiga" edit_format="template" data_type="string" can_backup="1">
+      <default_value></default_value>
+      <edit_format_params>dark_option_template_taiga</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="1000"/>
+    </option>
+    <option option_id="dark_taigachat_timedisplay" edit_format="radio" data_type="string" can_backup="1">
+      <default_value>Relative</default_value>
+      <edit_format_params>Relative={xen:phrase dark_time_relative}
+Absolute={xen:phrase dark_time_absolute}
+AbsoluteTime={xen:phrase dark_time_absolute_time}
+Time={xen:phrase dark_time_time}
+None={xen:phrase dark_time_none}</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="305"/>
+    </option>
+    <option option_id="dark_taigachat_toolbar" edit_format="radio" data_type="unsigned_integer" can_backup="1">
+      <default_value>3</default_value>
+      <edit_format_params>0={xen:phrase dark_disabled}
+1={xen:phrase dark_full_only}
+2={xen:phrase dark_full_alt_only}
+3={xen:phrase dark_all_views}</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="610"/>
+    </option>
+    <option option_id="dark_taigachat_toolbar_bbcode" edit_format="textbox" data_type="string" can_backup="1">
+      <default_value>&lt;span class='mceIcon mce_bold'&gt;&lt;/span&gt;:[b][/b]
+&lt;span class='mceIcon mce_italic'&gt;&lt;/span&gt;:[i][/i]
+&lt;span class='mceIcon mce_strikethrough'&gt;&lt;/span&gt;:[s][/s]
+&lt;span class='mceIcon mce_image'&gt;&lt;/span&gt;:[img][/img]
+&lt;span class='mceIcon mce_link'&gt;&lt;/span&gt;:[url=][/url]</default_value>
+      <edit_format_params>rows=8
+inputclass=Elastic</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="620"/>
+    </option>
+    <option option_id="dark_taigachat_unfocusedrefreshtime" edit_format="spinbox" data_type="unsigned_numeric" can_backup="1">
+      <default_value>5</default_value>
+      <edit_format_params>min=1</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="taigaChat" display_order="117"/>
+    </option>
+  </optiongroups>
+  <permissions>
+    <permission_groups>
+      <permission_group permission_group_id="dark_taigachat"/>
+    </permission_groups>
+    <permissions>
+      <permission permission_group_id="dark_taigachat" permission_id="ban" permission_type="flag" default_value="unset" interface_group_id="dark_taigachat" display_order="60"/>
+      <permission permission_group_id="dark_taigachat" permission_id="color" permission_type="flag" default_value="unset" interface_group_id="dark_taigachat" display_order="25"/>
+      <permission permission_group_id="dark_taigachat" permission_id="modify" permission_type="flag" default_value="unset" interface_group_id="dark_taigachat" display_order="30"/>
+      <permission permission_group_id="dark_taigachat" permission_id="modifyAll" permission_type="flag" default_value="unset" interface_group_id="dark_taigachat" display_order="40"/>
+      <permission permission_group_id="dark_taigachat" permission_id="motd" permission_type="flag" default_value="unset" interface_group_id="dark_taigachat" display_order="70"/>
+      <permission permission_group_id="dark_taigachat" permission_id="post" permission_type="flag" default_value="unset" interface_group_id="dark_taigachat" display_order="20"/>
+      <permission permission_group_id="dark_taigachat" permission_id="prune" permission_type="flag" default_value="unset" interface_group_id="dark_taigachat" display_order="50"/>
+      <permission permission_group_id="dark_taigachat" permission_id="view" permission_type="flag" default_value="allow" interface_group_id="dark_taigachat" display_order="1"/>
+    </permissions>
+    <interface_groups>
+      <interface_group interface_group_id="dark_taigachat" display_order="999"/>
+    </interface_groups>
+  </permissions>
+  <phrases>
+    <phrase title="cron_entry_taigachatCleanUpDaily" version_id="1" version_string="0.0.1"><![CDATA[TaigaChat Daily Clean Up]]></phrase>
+    <phrase title="cron_entry_taigachatPublicHtml" version_id="20" version_string="1.0.0"><![CDATA[TaigaChat Rebuild Public HTML]]></phrase>
+    <phrase title="dark_all_views" version_id="11" version_string="0.4.0"><![CDATA[Enabled in all views, including sidebar]]></phrase>
+    <phrase title="dark_banned_successfully" global_cache="1" version_id="20" version_string="1.0.0"><![CDATA[Banned user from shoutbox successfully. To unban, see User Permissions in ACP.]]></phrase>
+    <phrase title="dark_ban_from_shoutbox" version_id="20" version_string="1.0.0"><![CDATA[Ban from shoutbox]]></phrase>
+    <phrase title="dark_bbcode_basic" version_id="12" version_string="0.4.1"><![CDATA[Basic: Parse only img, url, email, b, i, u, s and color ]]></phrase>
+    <phrase title="dark_bbcode_full" version_id="3" version_string="0.1.1"><![CDATA[Full: Parse all BBCode tags]]></phrase>
+    <phrase title="dark_bbcode_none" version_id="12" version_string="0.4.1"><![CDATA[None: Do not parse any tags other than url and email]]></phrase>
+    <phrase title="dark_deleted_successfully" global_cache="1" version_id="0" version_string=""><![CDATA[Deleted message successfully.]]></phrase>
+    <phrase title="dark_disabled" version_id="10" version_string="0.3.2"><![CDATA[Disabled]]></phrase>
+    <phrase title="dark_do_not_display_activity" version_id="20" version_string="1.0.0"><![CDATA[Do not display forum activity in TaigaChat]]></phrase>
+    <phrase title="dark_do_not_have_permission_shoutbox" version_id="1" version_string="0.0.1"><![CDATA[You do not have permission to view the Shoutbox.]]></phrase>
+    <phrase title="dark_edit_message" version_id="1" version_string="0.0.1"><![CDATA[Edit Message]]></phrase>
+    <phrase title="dark_edit_shoutbox_motd" version_id="20" version_string="1.0.0"><![CDATA[Edit shoutbox MOTD]]></phrase>
+    <phrase title="dark_enter_message" version_id="1" version_string="0.0.1"><![CDATA[Enter message...]]></phrase>
+    <phrase title="dark_full_alt_only" version_id="11" version_string="0.4.0"><![CDATA[Full, Popup and Alternative views only]]></phrase>
+    <phrase title="dark_full_only" version_id="11" version_string="0.4.0"><![CDATA[Full and Popup views only]]></phrase>
+    <phrase title="dark_full_view" version_id="1" version_string="0.0.1"><![CDATA[Full View]]></phrase>
+    <phrase title="dark_https_compatibility_mode" version_id="25" version_string="1.0.1"><![CDATA[HTTPS compatibility mode]]></phrase>
+    <phrase title="dark_ignored" version_id="20" version_string="1.0.0"><![CDATA[*Ignored*]]></phrase>
+    <phrase title="dark_image_link" version_id="3" version_string="0.1.1"><![CDATA[Link: Display images as links]]></phrase>
+    <phrase title="dark_image_thumbzoom" version_id="3" version_string="0.1.1"><![CDATA[Thumbnail Zoom: Display a thumbnail which uses XenForo's click to expand effect]]></phrase>
+    <phrase title="dark_image_zoom" version_id="3" version_string="0.1.1"><![CDATA[Zoom: Display images with XenForo's click to expand effect]]></phrase>
+    <phrase title="dark_invalid_message" version_id="2" version_string="0.1.0"><![CDATA[Invalid message specified.]]></phrase>
+    <phrase title="dark_in_chat_x" version_id="20" version_string="1.0.0"><![CDATA[In chat: {total}]]></phrase>
+    <phrase title="dark_in_chat_x_members_y_guests_z" version_id="7" version_string="0.2.0"><![CDATA[In chat: {total} (members: {members}, guests: {guests})]]></phrase>
+    <phrase title="dark_members_in_chat" version_id="7" version_string="0.2.0"><![CDATA[Members in Chat]]></phrase>
+    <phrase title="dark_message_tools" version_id="2" version_string="0.1.0"><![CDATA[Message Tools]]></phrase>
+    <phrase title="dark_new_chat_message" version_id="20" version_string="1.0.0"><![CDATA[** New chat message! **]]></phrase>
+    <phrase title="dark_no_permission_modify_message" version_id="1" version_string="0.0.1"><![CDATA[You do not have permission to modify this message.]]></phrase>
+    <phrase title="dark_no_permission_post_message" version_id="1" version_string="0.0.1"><![CDATA[You do not have permission to post messages.]]></phrase>
+    <phrase title="dark_no_permission_view_message" version_id="1" version_string="0.0.1"><![CDATA[You do not have permission to view the Shoutbox.]]></phrase>
+    <phrase title="dark_popup" version_id="7" version_string="0.1.5"><![CDATA[Popup]]></phrase>
+    <phrase title="dark_posted_new_thread_in_x_x" global_cache="1" version_id="20" version_string="1.0.0"><![CDATA[posted a new thread in {forum}: {thread}.]]></phrase>
+    <phrase title="dark_powered_by_taigachat" version_id="1" version_string="0.0.1"><![CDATA[Powered by Darkimmortal's TaigaChat]]></phrase>
+    <phrase title="dark_replied_to_x" global_cache="1" version_id="20" version_string="1.0.0"><![CDATA[replied to thread {thread}.]]></phrase>
+    <phrase title="dark_saved_color" global_cache="1" version_id="20" version_string="1.0.0"><![CDATA[Saved shoutbox message color successfully.]]></phrase>
+    <phrase title="dark_saved_successfully" global_cache="1" version_id="20" version_string="1.0.0"><![CDATA[Saved message successfully.]]></phrase>
+    <phrase title="dark_shoutbox" global_cache="1" version_id="1" version_string="0.0.1"><![CDATA[Shoutbox]]></phrase>
+    <phrase title="dark_show_threads_and_replies" version_id="20" version_string="1.0.0"><![CDATA[Show new threads and replies]]></phrase>
+    <phrase title="dark_show_threads_only" version_id="20" version_string="1.0.0"><![CDATA[Show new threads only]]></phrase>
+    <phrase title="dark_taigachat" version_id="1" version_string="0.0.1"><![CDATA[TaigaChat]]></phrase>
+    <phrase title="dark_taigachat_disabled" version_id="1" version_string="0.0.1"><![CDATA[TaigaChat is currently disabled.]]></phrase>
+    <phrase title="dark_taigachat_pruned" global_cache="1" version_id="20" version_string="1.0.0"><![CDATA[/me just pruned the shoutbox.]]></phrase>
+    <phrase title="dark_tc_disabled" version_id="25" version_string="1.0.1"><![CDATA[Disabled]]></phrase>
+    <phrase title="dark_tc_enabled" version_id="25" version_string="1.0.1"><![CDATA[Enabled]]></phrase>
+    <phrase title="dark_time_absolute" version_id="14" version_string="0.5.0"><![CDATA[Absolute: Aug 3, 2011 at 14:42]]></phrase>
+    <phrase title="dark_time_absolute_time" version_id="20" version_string="1.0.0"><![CDATA[Shorthand absolute: Equivalent to Absolute for past dates and Time Only for current day.]]></phrase>
+    <phrase title="dark_time_none" version_id="14" version_string="0.5.0"><![CDATA[None: Do not display a timestamp]]></phrase>
+    <phrase title="dark_time_relative" version_id="14" version_string="0.5.0"><![CDATA[Relative: 5 minutes ago; Yesterday at 19:32; May 9, 2011]]></phrase>
+    <phrase title="dark_time_time" version_id="14" version_string="0.5.0"><![CDATA[Time Only: 14:42]]></phrase>
+    <phrase title="dark_users_in_chat" version_id="20" version_string="1.0.0"><![CDATA[ in chat]]></phrase>
+    <phrase title="dark_viewing_shoutbox" version_id="7" version_string="0.2.0"><![CDATA[Viewing Shoutbox]]></phrase>
+    <phrase title="option_dark_taigachat_activity" version_id="20" version_string="1.0.0"><![CDATA[Forum activity display]]></phrase>
+    <phrase title="option_dark_taigachat_activity_explain" version_id="24" version_string="1.0.0"><![CDATA[This option allows you to display new posts and threads on your forum in TaigaChat.]]></phrase>
+    <phrase title="option_dark_taigachat_activity_newtab" version_id="26" version_string="1.0.2"><![CDATA[Open forum activity links in new tab]]></phrase>
+    <phrase title="option_dark_taigachat_activity_newtab_explain" version_id="26" version_string="1.0.2"><![CDATA[If enabled, links to posts and threads generated by the above option will open in a new tab.]]></phrase>
+    <phrase title="option_dark_taigachat_activity_userid" version_id="24" version_string="1.0.0"><![CDATA[Forum activity permissions user]]></phrase>
+    <phrase title="option_dark_taigachat_activity_userid_explain" version_id="24" version_string="1.0.0"><![CDATA[Enter a user ID to control what posts are displayed by the above 'Forum activity display' option. Only posts viewable by that user will be displayed. Enter 0 for guest.]]></phrase>
+    <phrase title="option_dark_taigachat_archivethread" version_id="10" version_string="0.3.2"><![CDATA[Archive thread ID]]></phrase>
+    <phrase title="option_dark_taigachat_archivethread_explain" version_id="10" version_string="0.3.2"><![CDATA[Enter the ID of a thread above to have shoutbox messages archived to it daily, or enter 0 to disable this feature.]]></phrase>
+    <phrase title="option_dark_taigachat_archiveuser" version_id="10" version_string="0.3.2"><![CDATA[Archive member]]></phrase>
+    <phrase title="option_dark_taigachat_archiveuser_explain" version_id="20" version_string="1.0.0"><![CDATA[Enter the user ID that archive posts should be made by, or 0 for guest. Whether the user has permission to post in the selected archive thread is not important.]]></phrase>
+    <phrase title="option_dark_taigachat_bbcode" version_id="3" version_string="0.1.1"><![CDATA[BBCode parser level]]></phrase>
+    <phrase title="option_dark_taigachat_bbcode_explain" version_id="3" version_string="0.1.1"><![CDATA[This option controls which BBCode tags will work in TaigaChat messages.]]></phrase>
+    <phrase title="option_dark_taigachat_direction" version_id="1" version_string="0.0.1"><![CDATA[Reverse direction]]></phrase>
+    <phrase title="option_dark_taigachat_direction_explain" version_id="1" version_string="0.0.1"><![CDATA[Tick for latest message at the bottom, untick for latest message at the top.]]></phrase>
+    <phrase title="option_dark_taigachat_editside" version_id="3" version_string="0.1.1"><![CDATA[Always show message tools dropdown]]></phrase>
+    <phrase title="option_dark_taigachat_editside_explain" version_id="3" version_string="0.1.1"><![CDATA[If selected, the message tools dropdown from the full view will also be displayed next to each message on the sidebar and alternative views.]]></phrase>
+    <phrase title="option_dark_taigachat_focusedrefreshtime" version_id="20" version_string="1.0.0"><![CDATA[Focused refresh time]]></phrase>
+    <phrase title="option_dark_taigachat_focusedrefreshtime_explain" version_id="20" version_string="1.0.0"><![CDATA[The maximum number of seconds between AJAX refreshes when the window and tab are focused by the user.]]></phrase>
+    <phrase title="option_dark_taigachat_fullperpage" version_id="3" version_string="0.1.1"><![CDATA[Visible messages (full)]]></phrase>
+    <phrase title="option_dark_taigachat_fullperpage_explain" version_id="3" version_string="0.1.1"><![CDATA[Number of messages to display at once on the full size TaigaChat view.]]></phrase>
+    <phrase title="option_dark_taigachat_height" version_id="3" version_string="0.1.1"><![CDATA[Shoutbox height]]></phrase>
+    <phrase title="option_dark_taigachat_height_explain" version_id="3" version_string="0.1.1"><![CDATA[The height in pixels of the shoutbox. This affects the sidebar and alternative views, but not the full view.]]></phrase>
+    <phrase title="option_dark_taigachat_ignorehide" version_id="26" version_string="1.0.2"><![CDATA[Hide message entirely on ignore]]></phrase>
+    <phrase title="option_dark_taigachat_ignorehide_explain" version_id="26" version_string="1.0.2"><![CDATA[Hide messages by ignored users entirely, rather than just displaying *Ignored*.]]></phrase>
+    <phrase title="option_dark_taigachat_imagemode" version_id="3" version_string="0.1.1"><![CDATA[Image display mode]]></phrase>
+    <phrase title="option_dark_taigachat_imagemode_explain" version_id="3" version_string="0.1.1"><![CDATA[This option controls how images embedded using the [img] tag will be displayed in TaigaChat.]]></phrase>
+    <phrase title="option_dark_taigachat_maxlength" version_id="1" version_string="0.0.1"><![CDATA[Max message length]]></phrase>
+    <phrase title="option_dark_taigachat_maxlength_explain" version_id="1" version_string="0.0.1"><![CDATA[The maximum number of characters allowed per message.]]></phrase>
+    <phrase title="option_dark_taigachat_miniavatar" version_id="7" version_string="0.2.0"><![CDATA[Mini avatars]]></phrase>
+    <phrase title="option_dark_taigachat_miniavatar_explain" version_id="7" version_string="0.2.0"><![CDATA[Display mini avatars (16x16px) next to messages.]]></phrase>
+    <phrase title="option_dark_taigachat_motd" version_id="20" version_string="1.0.0"><![CDATA[MOTD]]></phrase>
+    <phrase title="option_dark_taigachat_motd_explain" version_id="20" version_string="1.0.0"><![CDATA[Message Of The Day to display at the top of the shoutbox in all views. Can be edited outside the Admin CP by anyone with the appropriate permission by double clicking the message. Limited BBCode supported.]]></phrase>
+    <phrase title="option_dark_taigachat_navtab" version_id="1" version_string="0.0.1"><![CDATA[Add navbar tab]]></phrase>
+    <phrase title="option_dark_taigachat_navtab_explain" version_id="3" version_string="0.1.1"><![CDATA[If selected, a Shoutbox tab will added to the navigation bar for those with view permissions.
+If disabled, the full view will still be accessible through clicking the title on the sidebar.]]></phrase>
+    <phrase title="option_dark_taigachat_popupenabled" version_id="27" version_string="1.0.3"><![CDATA[Enable popup view]]></phrase>
+    <phrase title="option_dark_taigachat_popupenabled_explain" version_id="27" version_string="1.0.3"><![CDATA[If disabled, the popup view will be unavailable.]]></phrase>
+    <phrase title="option_dark_taigachat_route" version_id="7" version_string="0.2.0"><![CDATA[Primary route]]></phrase>
+    <phrase title="option_dark_taigachat_route_explain" version_id="7" version_string="0.2.0"><![CDATA[The selected route will be used for links and the others will redirect to it.]]></phrase>
+    <phrase title="option_dark_taigachat_showalert" version_id="20" version_string="1.0.0"><![CDATA[Show alert in window title when new message received]]></phrase>
+    <phrase title="option_dark_taigachat_showalert_explain" version_id="20" version_string="1.0.0"><![CDATA[Displays an alert in the window/tab title (akin to Facebook) when a message is received. Only affects the Full shoutbox view.]]></phrase>
+    <phrase title="option_dark_taigachat_sidebarperpage" version_id="3" version_string="0.1.1"><![CDATA[Visible messages]]></phrase>
+    <phrase title="option_dark_taigachat_sidebarperpage_explain" version_id="3" version_string="0.1.1"><![CDATA[Number of messages to display at once on the sidebar and alternative TaigaChat views.]]></phrase>
+    <phrase title="option_dark_taigachat_smilies" version_id="20" version_string="1.0.0"><![CDATA[Enable smilies]]></phrase>
+    <phrase title="option_dark_taigachat_smilies_explain" version_id="20" version_string="1.0.0"><![CDATA[If disabled, smilies will not be parsed in shout messages.]]></phrase>
+    <phrase title="option_dark_taigachat_speedmode" version_id="25" version_string="1.0.1"><![CDATA[Speed mode (sacrifice security for speed)]]></phrase>
+    <phrase title="option_dark_taigachat_speedmode_explain" version_id="25" version_string="1.0.1"><![CDATA[With this option enabled, the latest messages will be stored in a publicly-viewable file on your web server. XenForo permissions will have no effect on who can VIEW shoutbox messages (if they know what they are doing), including guests and banned users.<br /><br />
+Enabling this option will drastically reduce server load and improve performance, as no PHP code or database queries are used to refresh the shoutbox.<br /><br />
+Unless discussions in the shoutbox will be strictly private, it is strongly recommended that you enable this option.<br /><br />
+<span style='font-size: 9px'>If using HTTPS compatibility mode, please ensure your Board URL setting is correct and includes https://.</span>]]></phrase>
+    <phrase title="option_dark_taigachat_tabunfocusedrefreshtime" version_id="20" version_string="1.0.0"><![CDATA[Tab unfocused refresh time]]></phrase>
+    <phrase title="option_dark_taigachat_tabunfocusedrefreshtime_explain" version_id="20" version_string="1.0.0"><![CDATA[This overrides the previous option in browsers that support the necessary API (not Internet Explorer) to provide a different refresh time specifically when the user is on a different tab. In most cases this should be significantly higher than the other refresh times.]]></phrase>
+    <phrase title="option_dark_taigachat_taiga" version_id="3" version_string="0.1.1"><![CDATA[&nbsp;]]></phrase>
+    <phrase title="option_dark_taigachat_taiga_explain" version_id="3" version_string="0.1.1"><![CDATA[]]></phrase>
+    <phrase title="option_dark_taigachat_timedisplay" version_id="14" version_string="0.5.0"><![CDATA[Timestamp format]]></phrase>
+    <phrase title="option_dark_taigachat_timedisplay_explain" version_id="14" version_string="0.5.0"><![CDATA[This option controls how the timestamp (date/time) next to messages is formatted for display. Please note that the examples are approximate and your unique XenForo settings will affect 12/24 hour display etc.]]></phrase>
+    <phrase title="option_dark_taigachat_toolbar" version_id="10" version_string="0.3.2"><![CDATA[BBCode toolbar]]></phrase>
+    <phrase title="option_dark_taigachat_toolbar_bbcode" version_id="10" version_string="0.3.2"><![CDATA[BBCode buttons]]></phrase>
+    <phrase title="option_dark_taigachat_toolbar_bbcode_explain" version_id="10" version_string="0.3.2"><![CDATA[Enter BBCode in the format Title:Code, one per line. (e.g. Link:[url=][/url]) <br />
+Title also accepts pure HTML; see editor_ui.css for more icons.]]></phrase>
+    <phrase title="option_dark_taigachat_toolbar_explain" version_id="11" version_string="0.4.0"><![CDATA[Enables a toolbar above the message entry box with both the BBCode buttons defined below and a button to insert smilies.]]></phrase>
+    <phrase title="option_dark_taigachat_unfocusedrefreshtime" version_id="20" version_string="1.0.0"><![CDATA[Unfocused refresh time]]></phrase>
+    <phrase title="option_dark_taigachat_unfocusedrefreshtime_explain" version_id="20" version_string="1.0.0"><![CDATA[The maximum number of seconds between AJAX refreshes when the window is <strong>not</strong> focused by the user.]]></phrase>
+    <phrase title="option_group_taigaChat" version_id="20" version_string="1.0.0"><![CDATA[TaigaChat Pro]]></phrase>
+    <phrase title="option_group_taigaChat_description" version_id="20" version_string="1.0.0"><![CDATA[AJAX Shoutbox by Darkimmortal - Nulled by VxF.cc]]></phrase>
+    <phrase title="permission_dark_taigachat_ban" version_id="20" version_string="1.0.0"><![CDATA[Ban users from accessing shoutbox]]></phrase>
+    <phrase title="permission_dark_taigachat_color" version_id="20" version_string="1.0.0"><![CDATA[Use persistent message color]]></phrase>
+    <phrase title="permission_dark_taigachat_modify" version_id="1" version_string="0.0.1"><![CDATA[Edit/Delete own shout messages]]></phrase>
+    <phrase title="permission_dark_taigachat_modifyAll" version_id="1" version_string="0.0.1"><![CDATA[Edit/Delete all shout messages]]></phrase>
+    <phrase title="permission_dark_taigachat_motd" version_id="20" version_string="1.0.0"><![CDATA[Set MOTD]]></phrase>
+    <phrase title="permission_dark_taigachat_post" version_id="1" version_string="0.0.1"><![CDATA[Post shout messages]]></phrase>
+    <phrase title="permission_dark_taigachat_prune" version_id="20" version_string="1.0.0"><![CDATA[Prune shoutbox]]></phrase>
+    <phrase title="permission_dark_taigachat_view" version_id="1" version_string="0.0.1"><![CDATA[View shout messages]]></phrase>
+    <phrase title="permission_group_dark_taigachat" version_id="1" version_string="0.0.1"><![CDATA[TaigaChat]]></phrase>
+    <phrase title="permission_interface_dark_taigachat" version_id="1" version_string="0.0.1"><![CDATA[TaigaChat]]></phrase>
+  </phrases>
+  <route_prefixes>
+    <route_type type="public">
+      <prefix original_prefix="chat" class="Dark_TaigaChat_Route_Prefix_TaigaChat" build_link="data_only"/>
+      <prefix original_prefix="chatbox" class="Dark_TaigaChat_Route_Prefix_TaigaChat" build_link="data_only"/>
+      <prefix original_prefix="shoutbox" class="Dark_TaigaChat_Route_Prefix_TaigaChat" build_link="data_only"/>
+      <prefix original_prefix="taigachat" class="Dark_TaigaChat_Route_Prefix_TaigaChat" build_link="data_only"/>
+    </route_type>
+  </route_prefixes>
+  <style_properties/>
+  <templates>
+    <template title="dark_taigachat" version_id="20" version_string="1.0.0"><![CDATA[<xen:if is="{$taigachat_alt} || {$TaigaChatAlt}">
+	<xen:set var="$taigachat.alt">1</xen:set>
+	<xen:set var="$TaigaChatAlt.alt">1</xen:set>
+	<xen:set var="$TaigaChatAlt.taigachat.alt">1</xen:set>
+</xen:if>
+
+<xen:if is="{$TaigaChat} && {$TaigaChat.xenporta}">
+	<xen:include template="dark_taigachat_mapped">
+		<xen:map from="$TaigaChat.taigachat" to="$taigachat" />         
+	</xen:include>
+	
+<xen:elseif is="{$TaigaChatAlt} && {$TaigaChatAlt.xenporta_alt}" />
+	<xen:set var="$taigachat.alt">1</xen:set>
+	<xen:include template="dark_taigachat_mapped">
+		<xen:map from="$TaigaChatAlt.taigachat" to="$taigachat" />         
+	</xen:include>
+
+<xen:else />
+
+	<xen:include template="dark_taigachat_mapped" />
+
+</xen:if>]]></template>
+    <template title="dark_taigachat.css" version_id="27" version_string="1.0.3"><![CDATA[/* Darkimmortal's TaigaChat */
+
+#taigachat_box { width: 220px; height: 300px; border: 1px solid {xen:property primaryLighter}; padding: 5px; margin: 5px -2px 0 -2px; overflow: auto; overflow-y: scroll; font-size: 11px; background: {xen:property primaryLightest}; }
+.taigachat_reverse #taigachat_box { margin-bottom: 5px; margin-top: 0; }
+#taigachat_box li { background: {xen:property primaryLightest}; margin-bottom: 6px; }
+#taigachat_controls { text-align: center; margin: 10px 0 5px; }
+
+.taigachat_avatar img { width: 16px; height: 16px; padding: 0; vertical-align: bottom; }
+
+.taigachat_reverse #taigachat_controls { margin: 0; }
+#taigachat_controls .button { vertical-align: top; }
+#taigachat_box .username { font-size: 11px; display: inline; }
+#taigachat_box .Popup { display: inline-block; }
+#taigachat_box.taigachat_thumbzoom .bbCodeImage { max-width: 203px; }
+.taigachat_messagetext { display: inline-block; word-wrap: break-word; max-width: 100%; }
+#taigachat_toolbar { margin-bottom: 5px; }
+#taigachat_sidebar #taigachat_toolbar/*, #taigachat_full.taigachat_alt #taigachat_toolbar*/ { display: none }
+.taigachat_credit { text-align: right; color: {xen:property primaryLighter}; font-size: 10px; margin-top: 5px; }
+
+#taigachat_sidebar #taigachat_message { width: 193px; font-size: 11px; }
+#taigachat_sidebar #taigachat_send { height: 21px; }
+#taigachat_sidebar #taigachat_controls { margin: 5px 0 0; }
+#taigachat_sidebar.taigachat_reverse #taigachat_controls { margin: 0; }
+#taigachat_sidebar h3 blockquote { font-size: 11px; color: {xen:property contentText}; font-weight: normal; }
+
+#taigachat_full #taigachat_box { width: 97%; height: 600px; margin: 0 auto 10px auto; font-size: 13px; }
+#taigachat_full #taigachat_message { width: 90%; }
+#taigachat_full #taigachat_toolbar { float: right; margin-right: 10px; }
+#taigachat_full .DateTime { font-size: 11px; }
+#taigachat_full #taigachat_box .username { font-size: 13px; }
+#taigachat_full .taigachat_messagetext { display: inline; }
+#taigachat_full.taigachat_normal #taigachat_controls { margin: 0 0 5px; }
+
+#taigachat_full.taigachat_alt #taigachat_box { font-size: 12px; margin: 0 auto 5px auto; width: 97%; }
+#taigachat_full.taigachat_alt.taigachat_reverse #taigachat_box { margin: 10px auto; }
+#taigachat_full.taigachat_alt #taigachat_box .username { font-size: 12px; }
+#taigachat_full.taigachat_alt.taigachat_normal #taigachat_controls { margin: 10px 0 5px; }
+
+.taigachat_motd { border: 1px solid {xen:property primaryLighterStill}; padding: 2px; }
+.dark_taigachat_full .taigachat_motd { margin: 0 20px; padding: 4px; }
+#taigachat_inchat { font-style: italic; color: {xen:property dimmedTextColor} }
+
+/*.taigachat_popup_body { height: 100%; }*/
+.taigachat_popup { padding: 0; height: 100%; margin: 0; position: absolute; top: 0; left: 0; bottom: 0; right: 0;  }
+.taigachat_popup > div { height: 100%; margin: -20px 0 0 0; padding: 10px 0; border-bottom: 0;  }
+.taigachat_popup #taigachat_box { height: auto !important; position: absolute; top: 40px; left: 10px; right: 10px; bottom: 10px; width: auto !important; }
+.taigachat_popup #taigachat_controls { position: absolute; left: 10px; right: 10px; top: 25px; }
+.taigachat_popup.taigachat_reverse #taigachat_box { top: 10px; left: 10px; right: 10px; bottom: 20px; }
+.taigachat_popup.taigachat_reverse #taigachat_controls { left: 10px; right: 10px; bottom: 10px; top: auto; }
+/*.taigachat_toolbar_enabled*/ .taigachat_popup #taigachat_box { top: 60px; }
+/*.taigachat_toolbar_enabled*/ .taigachat_popup.taigachat_reverse #taigachat_box { bottom: 40px; top: 22px; }
+.taigachat_popup .taigachat_motd { margin: 10px 0 0 10px; border: none; }
+.taigachat_popup .taigachat_credit { display: none } 
+.taigachat_popuphtml { min-width: 0 !important; }
+.taigachat_canban { display: none }
+
+.taigachat_smilies_list { max-width: 250px; max-height: 225px !important; }
+.taigachat_smilies_list li { display: inline; }
+.taigachat_smilie { padding: 4px 6px; color: #FF242B; display: inline-block !important; }
+.taigachat_bbcode { padding: 0; }
+.xenForoSkin .taigachat_bbcode_color { display: block; width: 20px; height: 20px; background:url(styles/dark/color_swatch.png) no-repeat center; cursor: pointer !important; }
+
+.taigachat_ignored { opacity: 0.4; }
+.taigachat_me { font-style: italic; } 
+.taigachat_activity { color: {xen:property primaryLightish}; font-style: italic; } 
+.taigachat_ignorehide { display: none !important; }]]></template>
+    <template title="dark_taigachat_chatbox" version_id="26" version_string="1.0.2"><![CDATA[<xen:require css="dark_taigachat.css" />
+<xen:require css="bb_code.css" />
+<xen:require js="js/dark/taigachat.js?{xen:raw $taigachat.js_modification}" />	
+
+
+<div class="section<xen:if is="{$taigachat.alt}"> sectionMain nodeList taigachat_alt </xen:if><xen:if is="{$taigachat.reverse}"> taigachat_reverse<xen:else /> taigachat_normal</xen:if><xen:if is="{$taigachat.popup}"> taigachat_popup</xen:if>" id='<xen:if is="{$taigachat.alt} OR !{$taigachat.sidebar}">taigachat_full<xen:else />taigachat_sidebar</xen:if>'>
+	<xen:if is="!{$taigachat.alt}">
+		<div class="<xen:if is="{$taigachat.sidebar}">secondaryContent<xen:else />primaryContent</xen:if>">
+	<xen:else />
+		<div>
+	</xen:if>
+	
+	
+		<xen:if is="{$taigachat.sidebar}">
+			<xen:if is="{$taigachat.alt}">
+				<div class="nodeInfo categoryNodeInfo categoryStrip">		
+					<div class="categoryText">
+						<h3 class="nodeTitle"><a href="{xen:link '{$taigachat.route}'}">{xen:phrase dark_shoutbox} (<span id="taigachat_count">0</span>)</a></h3>			
+						<xen:if is="{$taigachat.motd}"><blockquote class="nodeDescription baseHtml"><span id="taigachat_motd">{xen:raw $taigachat.motd}</span></blockquote></xen:if>
+						<a href="{xen:link 'taigachat/motd'}" class="OverlayTrigger" style="display:none"></a>
+					</div>			
+				</div>
+			<xen:else />
+				<h3><a href='{xen:link '{$taigachat.route}'}'>{xen:phrase dark_shoutbox} (<span id="taigachat_count">0</span>)</a>				
+				<xen:if is="{$taigachat.motd}"><blockquote><span id="taigachat_motd">{xen:raw $taigachat.motd}</span></blockquote></xen:if>
+				<a href="{xen:link 'taigachat/motd'}" class="OverlayTrigger" style="display:none"></a>
+				</h3>
+			</xen:if>
+		
+		</xen:if>
+		
+		
+		<xen:if is="{$taigachat.popup}">
+			<blockquote class="taigachat_motd"><span id="taigachat_inchat">(<span id="taigachat_count">0</span> {xen:phrase dark_users_in_chat})</span> <span id="taigachat_motd">{xen:raw $taigachat.motd}</span></blockquote>
+			<a href="{xen:link 'taigachat/motd'}" class="OverlayTrigger" style="display:none"></a>		
+		</xen:if>
+		
+		<xen:if is="!{$taigachat.reverse}">
+			<xen:include template="dark_taigachat_controls">
+				<xen:map from="$taigachat" to="$taigachat" />
+			</xen:include>
+		</xen:if>
+		
+		<div id='taigachat_box' class='<xen:if is="{$taigachat.thumbzoom}">taigachat_thumbzoom</xen:if>'<xen:if is="{$taigachat.sidebar}"> style='height: {xen:raw $taigachat.height}px'</xen:if>><ol></ol></div>			
+		
+		<xen:if is="{$taigachat.reverse}">
+			<xen:include template="dark_taigachat_controls">
+				<xen:map from="$taigachat" to="$taigachat" />
+			</xen:include>
+		</xen:if>
+		
+	</div>
+</div>
+
+<script type='text/javascript'>
+var taigachat_autorefresh = <xen:if is="{$visitor.user_id} OR {$taigachat.canPost}">true<xen:else />false</xen:if>;
+var taigachat_limit = parseInt("{xen:raw $taigachat.limit}", 10) || 50;
+var taigachat_speed = <xen:if is="{$taigachat.speed}">true<xen:else />false</xen:if>;
+var taigachat_activity_newtab = <xen:if is="{$taigachat.activity_newtab}">true<xen:else />false</xen:if>;
+var taigachat_ignorehide = <xen:if is="{$taigachat.ignorehide}">true<xen:else />false</xen:if>;
+var taigachat_speedurl = "{$taigachat.speedurl}";
+var taigachat_sidebar = <xen:if is="{$taigachat.sidebar}">true<xen:else />false</xen:if>;
+var taigachat_canModify = <xen:if is="{$taigachat.canModify}">true<xen:else />false</xen:if>;
+var taigachat_canModifyAll = <xen:if is="{$taigachat.canModifyAll}">true<xen:else />false</xen:if>;
+var taigachat_canBan = <xen:if is="{$taigachat.canBan}">true<xen:else />false</xen:if>;
+var taigachat_showAlert = <xen:if is="{$taigachat.showAlert}">true<xen:else />false</xen:if>;
+var taigachat_focusedRefreshTime = parseInt("{xen:raw $taigachat.focusedrefreshtime}", 10) || 10;
+var taigachat_unfocusedRefreshTime = parseInt("{xen:raw $taigachat.unfocusedrefreshtime}", 10) || 10;
+var taigachat_tabUnfocusedRefreshTime = parseInt("{xen:raw $taigachat.tabunfocusedrefreshtime}", 10) || 10;
+<xen:if is="{$taigachat.canColor}">taigachat_customColor = "{$taigachat.color}";</xen:if>
+
+jQuery.extend(XenForo.phrases,
+{
+	dark_ignored: "{xen:jsescape {xen:phrase dark_ignored}}",
+	dark_banned_successfully: "{xen:jsescape {xen:phrase dark_banned_successfully}}",
+	dark_new_chat_message: "{xen:jsescape {xen:phrase dark_new_chat_message}}"
+});
+</script>]]></template>
+    <template title="dark_taigachat_color_picker" version_id="20" version_string="1.0.0"><![CDATA[<xen:require js="js/dark/taigachat_color_picker.js?{$js_modification}" />
+
+<xen:require css="editor_dialog.css" />
+<xen:require css="dark_taigachat_color_picker.css" />
+
+<div id="colorpicker">
+<form onsubmit="return false" action="{$requestPaths.requestUri}" method="post" class="section">
+	<ul class="heading tabs mainTabs Tabs" data-panes="#panels > div">
+		<li id="picker_tab" class="current"><span><a href="#picker_panel">{xen:phrase color_picker}</a></span></li>
+		<li id="rgb_tab"><span><a href="#rgb_panel" onclick="generateWebColors();">{xen:phrase palette}</a></span></li>
+		<li id="named_tab"><span><a href="#named_panel" onclick="generateNamedColors();">{xen:phrase named_colors}</a></span></li>
+	</ul>
+
+	<div class="panel_wrapper primaryContent" id="panels">
+		<div id="picker_panel" class="panel current">
+			<fieldset>
+				<legend>{xen:phrase color_picker}</legend>
+				<div id="picker">
+					<img id="colors" src="{xen:property imagePath}/xenforo/editor/colorpicker.jpg" alt="" />
+
+					<div id="light">
+						<!-- Will be filled with divs -->
+					</div>
+
+					<br style="clear: both" />
+				</div>
+			</fieldset>
+		</div>
+
+		<div id="rgb_panel" class="panel">
+			<fieldset>
+				<legend>{xen:phrase palette}</legend>
+				<div id="webcolors">
+					<!-- Gets filled with web safe colors-->
+				</div>
+
+				<br style="clear: both" />
+			</fieldset>
+		</div>
+
+		<div id="named_panel" class="panel">
+			<fieldset>
+				<legend>{xen:phrase named_colors}</legend>
+				<div id="namedcolors">
+					<!-- Gets filled with named colors-->
+				</div>
+
+				<br style="clear: both" />
+
+				<div id="colornamecontainer">
+					{xen:phrase color}: <span id="colorname"></span>
+				</div>
+			</fieldset>
+		</div>
+	</div>
+
+	<div class="sectionFooter">
+		<input type="submit" id="insert" name="insert" value="{xen:phrase apply}" class="button primary OverlayCloser" /> 
+		<input type="button" id="cancel" name="cancel" value="{xen:phrase cancel}" class="button OverlayCloser" />
+
+		<div id="previewblock">
+			<label for="color">{xen:phrase color}:</label> <input id="color" type="text" size="8" maxlength="8" class="text" />
+		</div>
+
+		<div id="preview"></div>
+
+	</div>
+	<input type="hidden" name="_xfToken" value="{$visitor.csrf_token_page}" />
+</form>
+</div>
+]]></template>
+    <template title="dark_taigachat_color_picker.css" version_id="20" version_string="1.0.0"><![CDATA[#rgb_panel { margin: 0 auto; text-align: center; width: 180px; }
+#named_panel { margin: 0 auto; width: 145px; }
+#colorpicker legend { font-size: 16px; font-weight: bold; border-bottom: 1px solid #ccc; margin-bottom: 10px; }
+#colorpicker .panel_wrapper div.current { height: auto !important; }
+#colorpicker .heading { padding: 5px 10px 0 }
+#colorpicker #colornamecontainer { font-size: 10px; }
+#colorpicker #previewblock { float: left !important; }
+#colorpicker #preview { float: left !important; }
+#colorpicker #cancel { margin-right: 7px; }]]></template>
+    <template title="dark_taigachat_controls" version_id="20" version_string="1.0.0"><![CDATA[<xen:if is="{$taigachat.canPost}">
+	<div id='taigachat_controls'>
+		<xen:if is="({$taigachat.toolbar} == 1 AND !{$taigachat.alt} AND !{$taigachat.sidebar}) OR ({$taigachat.toolbar} == 2 AND (!{$taigachat.sidebar} OR ({$taigachat.sidebar} AND {$taigachat.alt})) OR ({$taigachat.toolbar} == 3)">
+			<div id='taigachat_toolbar'>
+
+				<xen:if is="{$taigachat.canColor}"><a id="taigachat_colorpicker" class="button taigachat_bbcode xenForoSkin OverlayTrigger" href="{xen:link 'taigachat/color-picker'}"><span class='taigachat_bbcode_color'></span></a></xen:if>
+
+				<xen:if is="{$taigachat.toolbar_bbcode}">
+					<xen:require css="editor_ui.css" />
+					<xen:foreach loop="$taigachat.toolbar_bbcode" value="$code" key="$title">
+						<button data-code='{$code}' class='button taigachat_bbcode xenForoSkin'>{xen:raw $title}</button>
+					</xen:foreach>
+				</xen:if>
+				<xen:if is="{$taigachat.toolbar_smilies}">
+					<div class="Popup" id='taigachat_smilies' style='display: inline; top: 3px'>
+						<a rel="Menu"><img src='{xen:property imagePath}/xenforo/editor/smilie.png' alt='Smilies' title='Smilies' style='vertical-align: top' /></a>
+						<div class="Menu">
+							<div class="primaryContent menuHeader"><h3>{xen:phrase smilies}</h3></div>
+							<ul class="secondaryContent blockLinksList taigachat_smilies_list">
+								<xen:foreach loop="$taigachat.toolbar_smilies" value="$smilie" key="$id">
+									<xen:if is="{$smilie.sprite_mode}">
+										<li><a href='javascript:;' class='taigachat_smilie mceSmilieSprite mceSmilie{$smilie.smilie_id}' data-src='{$smilie.image_url}' data-alt='{$smilie.text}' data-title='{$smilie.title}'></a></li>
+									<xen:else />
+										<li><a href='javascript:;' class='taigachat_smilie' data-src='{$smilie.image_url}' data-alt='{$smilie.text}' data-title='{$smilie.title}'></a></li>
+									</xen:if>
+								</xen:foreach>
+							</ul>
+						</div>
+					</div>
+				</xen:if>
+			</div>
+		</xen:if>
+		<input id='taigachat_message' class='textCtrl' type='text' maxlength='{xen:raw $taigachat.maxlength}' placeholder='{xen:phrase dark_enter_message}' /> <input type='submit' id='taigachat_send' value='&gt;' class='button primary' />
+	</div>
+</xen:if>
+]]></template>
+    <template title="dark_taigachat_edit" version_id="24" version_string="1.0.0"><![CDATA[<xen:title>{xen:phrase edit_message_by_x, 'name={$taigachat.message.username}'}</xen:title>
+
+<xen:navigation>
+	<xen:breadcrumb source="$nodeBreadCrumbs" />
+	<xen:breadcrumb>{xen:phrase dark_edit_message}</xen:breadcrumb>
+</xen:navigation>
+
+<form action="{xen:link '{$taigachat.route}/edit', $taigachat.message}" method="post" class="xenForm formOverlay AutoValidator taigachat_editform">
+
+	<dl class="ctrlUnit">
+		<dt><label for="ctrl_title">{xen:phrase message}:</label></dt>
+		<dd><input type="text" name="message" value="{$taigachat.message.message}" class="textCtrl" id="ctrl_message" maxlength="400" /></dd>
+	</dl>
+
+	<dl class="ctrlUnit submitUnit">
+		<dt></dt>
+		<dd>
+			<input type="submit" value="{xen:phrase save_changes}" accesskey="s" class="button primary" />
+			<a href="{xen:link '{$taigachat.route}/delete', $taigachat.message}" type="button" class="button">{xen:phrase delete}...</a>
+
+		</dd>
+	</dl>
+
+	<input type="hidden" name="_xfToken" value="{$visitor.csrf_token_page}" />
+	<input type="hidden" name="isJavascript" value="0" />
+</form>
+
+<script type="text/javascript">
+
+$(".taigachat_editform").bind('AutoValidationBeforeSubmit', function(e){
+	$("input[name='isJavascript']").val("1");
+	return true;
+});
+
+$(".taigachat_editform").bind('AutoValidationComplete', function(e){
+	$("#taigachat_message_"+e.ajaxData.editId).children("span:last").replaceWith(e.ajaxData.templateHtml);
+	$(this).parents('.xenOverlay').data('overlay').close();
+	e.preventDefault();
+	return true;
+});
+
+</script>]]></template>
+    <template title="dark_taigachat_full" version_id="27" version_string="1.0.3"><![CDATA[<xen:h1>{xen:phrase dark_shoutbox}</xen:h1>
+<xen:title>{xen:phrase dark_shoutbox}</xen:title>
+
+<xen:if is="({$taigachat.toolbar} == 1 AND !{$taigachat.alt} AND !{$taigachat.sidebar}) OR ({$taigachat.toolbar} == 2 AND (!{$taigachat.sidebar} OR ({$taigachat.sidebar} AND {$taigachat.alt})) OR ({$taigachat.toolbar} == 3)">
+	<xen:set var="$taigachat.toolbar_enabled">1</xen:set>
+</xen:if>
+
+<xen:container var="$head.canonical"><link rel="canonical" href="{xen:link 'canonical:{$taigachat.route}'}" /></xen:container>
+
+<xen:if is="{$taigachat.enabled}">
+	<xen:if is="{$taigachat.canView}">
+		<blockquote class="taigachat_motd"><span id="taigachat_inchat">(<span id="taigachat_count">0</span> {xen:phrase dark_users_in_chat})</span> <span id="taigachat_motd">{xen:raw $taigachat.motd}</span></blockquote>
+		<a href="{xen:link 'taigachat/motd'}" class="OverlayTrigger" style="display:none"></a>
+	
+		<xen:include template="dark_taigachat_chatbox" />	
+		
+		
+		<xen:sidebar>
+
+			<xen:edithint template="sidebar.css" />
+
+			<xen:include template="sidebar_online_users">
+				<xen:map from="$taigachat.onlineUsers" to="$onlineUsers" />
+			</xen:include>
+			
+			<div id='taigachat_online_users_holder'></div>
+
+		</xen:sidebar>
+
+	<xen:else />
+	{xen:phrase dark_do_not_have_permission_shoutbox}
+	</xen:if>	
+<xen:else />
+	{xen:phrase dark_taigachat_disabled}	
+</xen:if>
+	]]></template>
+    <template title="dark_taigachat_links" version_id="27" version_string="1.0.3"><![CDATA[<ul class="secondaryContent blockLinksList">
+	<li><a href="{xen:link '{$taigachat.route}'}">{xen:phrase dark_full_view}</a></li>
+	<xen:if is="{$taigachat.popupenabled}">
+		<li><a href="{xen:link '{$taigachat.route}/popup'}" class="taigachat_popup_link" target="_blank">{xen:phrase dark_popup}</a></li>
+	</xen:if>
+</ul>
+
+<script type="text/javascript">
+// <![CDATA[
+	$(document).ready(function(){
+		$(".taigachat_popup_link").click(function(e){
+			window.open(this.href, 'taigachat_popup_window', 'width=900,height=700,menubar=no,toolbar=no,location=no,status=no,resizable=yes,scrollbars=yes,personalbar=no,dialog=no');
+			e.preventDefault();
+			return false;
+		});
+	});
+// ]-]->
+</script>]]></template>
+    <template title="dark_taigachat_list" version_id="26" version_string="1.0.2"><![CDATA[<xen:if is="{$taigachat.publichtml}">
+	<meta name='robots' content='noindex,nofollow,noimageindex,noarchive'>
+</xen:if>
+
+<xen:foreach loop="$taigachat.messages" value="$message">
+	<li id="taigachat_message_{$message.id}" data-userId="{$message.user_id}" data-messageId="{$message.id}">	
+
+		<xen:if is="{$taigachat.editside} OR !{$taigachat.sidebar}">
+			<xen:if is="{$message.canModify} OR {$taigachat.canBan} OR {$taigachat.publichtml}">
+				<div class="Popup" {xen:if $taigachat.publichtml, 'style="display:none"'}>
+					<a rel="Menu"></a>
+					<div class="Menu">
+						<div class="primaryContent menuHeader"><h3>{xen:phrase dark_message_tools}</h3></div>
+						<ul class="secondaryContent blockLinksList">
+							<li><a href="{xen:link 'taigachat/edit', $message}" class="OverlayTrigger">{xen:phrase edit}</a></li>
+							<li><a href="{xen:link 'taigachat/delete', $message}">{xen:phrase delete}</a></li>
+							<xen:if is="{$message.user_id} > 0">
+								<li id="taigachat_canban_{$message.id}" class="taigachat_canban"><a data-link="{xen:link 'taigachat/ban', $message}" href="#" class="taigachat_ban">{xen:phrase dark_ban_from_shoutbox}</a></li>
+							</xen:if>
+						</ul>
+					</div>
+				</div>
+			</xen:if>			
+		</xen:if>
+
+		<xen:if is="{$taigachat.miniavatar}">
+			<xen:avatar user="$message" size="s" img="true" class="_plainImage taigachat_avatar" />
+		</xen:if>
+		
+		<xen:if is="{$taigachat.timedisplay} == 'Absolute' || ({$taigachat.timedisplay} == 'AbsoluteTime' && !{$message.today})">
+			<span class='DateTime muted'>{xen:datetime $message.date, 'absolute'} - </span>
+		<xen:elseif is="{$taigachat.timedisplay} == 'Time' || ({$taigachat.timedisplay} == 'AbsoluteTime' && {$message.today})" />
+			<span class='DateTime muted'>{xen:time $message.date, 'absolute'} - </span>
+		<xen:elseif is="{$taigachat.timedisplay} == 'Relative'" />
+			<span class='DateTime muted'><xen:datetime time="$message.date" /> - </span>
+		<xen:else />
+		</xen:if>
+
+		<span class="{xen:if {$message.me}, 'taigachat_me'} {xen:if {$message.activity}, 'taigachat_activity'}">
+
+			<a {xen:if $message.user_id, 'href="{xen:link members, $message}" '}class="username" itemprop="name"><xen:if is="{$message.usernameHtml}">{xen:raw $message.usernameHtml}<xen:else />{xen:helper richUserName, $message}</xen:if></a><xen:if is="!{$message.me} && !{$message.activity}">:</xen:if> 	
+			 
+			<div class='taigachat_messagetext ugc'>{xen:raw $message.messageHtml}</div>
+
+		</span>
+	</li>
+</xen:foreach>
+
+<div class='taigachat_list_online_users' style='display:none'>
+<xen:if is="{$taigachat.online}">
+	<xen:include template="dark_taigachat_online_users">
+		<xen:map from="$taigachat" to="$taigachat" />
+	</xen:include>
+</xen:if>
+</div>]]></template>
+    <template title="dark_taigachat_mapped" version_id="12" version_string="0.4.1"><![CDATA[<xen:if is="({$taigachat.toolbar} == 1 AND !{$taigachat.alt} AND !{$taigachat.sidebar}) OR ({$taigachat.toolbar} == 2 AND (!{$taigachat.sidebar} OR ({$taigachat.sidebar} AND {$taigachat.alt})) OR ({$taigachat.toolbar} == 3)">
+	<xen:set var="$taigachat.toolbar_enabled">1</xen:set>
+</xen:if>
+
+<xen:if is="{$taigachat.enabled}">
+	<xen:if is="{$taigachat.canView}">
+		<xen:include template="dark_taigachat_chatbox" />
+	</xen:if>    
+</xen:if>]]></template>
+    <template title="dark_taigachat_motd" version_id="26" version_string="1.0.2"><![CDATA[<xen:title>{xen:phrase dark_edit_shoutbox_motd}</xen:title>
+
+<xen:navigation>
+	<xen:breadcrumb source="$nodeBreadCrumbs" />
+	<xen:breadcrumb>{xen:phrase dark_edit_shoutbox_motd}</xen:breadcrumb>
+</xen:navigation>
+
+<form action="{xen:link '{$taigachat.route}/motd'}" method="post" class="xenForm formOverlay AutoValidator taigachat_motdform">
+
+	<dl class="ctrlUnit">
+		<dt><label for="ctrl_title">{xen:phrase message}:</label></dt>
+		<dd><input type="text" name="message" value="{$taigachat.message}" class="textCtrl" id="ctrl_message" maxlength="400" /></dd>
+	</dl>
+
+	<dl class="ctrlUnit submitUnit">
+		<dt></dt>
+		<dd>
+			<input type="submit" value="{xen:phrase save_changes}" accesskey="s" class="button primary" />
+
+		</dd>
+	</dl>
+
+	<input type="hidden" name="_xfToken" value="{$visitor.csrf_token_page}" />
+</form>
+
+<script type="text/javascript">
+
+$(".taigachat_motdform").bind('AutoValidationComplete', function(e){
+	if(typeof refreshShoutbox != "undefined")
+		refreshShoutbox(false, true, true);
+	return true;
+});
+
+</script>]]></template>
+    <template title="dark_taigachat_online_users" version_id="27" version_string="1.0.3"><![CDATA[<div class="section membersOnline userList">		
+	<div class="secondaryContent">
+		<h3><a href='{xen:link '{$taigachat.route}'}'>{xen:phrase dark_members_in_chat}</a> ({xen:number $taigachat.online.total})</h3>
+		
+		<xen:if is="{$taigachat.online.records}">
+		
+			<xen:if is="{$visitor.user_id}">
+				<xen:if hascontent="true">
+				<h4 class="minorHeading"><a href="{xen:link account/following}">{xen:phrase people_you_follow}:</a></h4>
+				<ul class="followedOnline">
+					<xen:contentcheck>
+						<xen:foreach loop="$taigachat.online.records" value="$user">
+							<xen:if is="{$user.followed}">
+								<li title="{$user.username}" class="Tooltip"><xen:avatar user="$user" size="s" img="true" class="_plainImage" /></li>
+							</xen:if>
+						</xen:foreach>
+					</xen:contentcheck>
+				</ul>
+				<h4 class="minorHeading"><a href="{xen:link members}">{xen:phrase members}:</a></h4>
+				</xen:if>
+			</xen:if>
+			
+			<ol class="listInline">
+				<xen:foreach loop="$taigachat.online.records" value="$user" i="$i">
+					<xen:if is="{$i} <= {$taigachat.online.limit}">
+						<li>
+						<xen:if is="{$user.user_id}">
+							<a href="{xen:link members, $user}"
+								class="username{xen:if '!{$user.visible}', ' invisible'}{xen:if {$user.followed}, ' followed'}">{xen:helper richUsername, $user}</a><xen:if is="{$i} < {$taigachat.online.total}">,</xen:if>
+						<xen:else />
+							{xen:phrase guest}<xen:if is="{$i} < {$taigachat.online.limit}">,</xen:if>
+						</xen:if>
+						</li>
+					</xen:if>
+				</xen:foreach>
+				<xen:if is="{$taigachat.online.recordsUnseen}">
+					<li class="moreLink">...</li>
+				</xen:if>
+			</ol>
+		</xen:if>
+		
+	</div>
+</div>]]></template>
+    <template title="dark_taigachat_popup" version_id="20" version_string="1.0.0"><![CDATA[<!DOCTYPE html>
+<html id="XenForo" class="taigachat_popuphtml Public {xen:if {$visitor.user_id}, 'LoggedIn', 'LoggedOut'}">
+<head>
+	<meta charset="utf-8" />
+	<xen:if is="{$requestPaths.fullBasePath}"><base href="{$requestPaths.fullBasePath}" /></xen:if>
+	
+	<title>{xen:phrase dark_shoutbox} | {$xenOptions.boardTitle}</title>
+	
+	<noscript><style type="text/css">.JsOnly { display: none !important; }</style></noscript>
+	<link rel="stylesheet" type="text/css" href="css.php?css=xenforo,form,public,bb_code,editor_ui,dark_taigachat&amp;style={xen:urlencode $_styleId}&amp;d={$visitorStyle.last_modified_date}" />
+
+	<xen:include template="google_analytics" />
+	<xen:include template="page_container_js_head" />
+	
+	<xen:if is="{$pageDescription.content} AND !{$pageDescription.skipmeta} AND !{$head.description}"><meta name="description" content="{xen:string wordTrim, {xen:helper stripHtml, {xen:raw $pageDescription.content}}, 200}" /></xen:if>
+	<xen:if is="{$head}"><xen:foreach loop="$head" value="$headElement">{xen:raw $headElement}</xen:foreach></xen:if>
+	<script type="text/javascript" src="js/dark/taigachat.js?{xen:raw $taigachat.js_modification}"></script>
+</head>
+<body class='taigachat_popup_body'>
+
+<xen:if is="({$taigachat.toolbar} == 1 AND !{$taigachat.alt} AND !{$taigachat.sidebar}) OR ({$taigachat.toolbar} == 2 AND (!{$taigachat.sidebar} OR ({$taigachat.sidebar} AND {$taigachat.alt})) OR ({$taigachat.toolbar} == 3)">
+	<xen:set var="$taigachat.toolbar_enabled">1</xen:set>
+</xen:if>
+
+
+<div id="content" class="{$contentTemplate} <xen:if is="{$taigachat.toolbar_enabled}">taigachat_toolbar_enabled</xen:if>">
+
+	<xen:if is="{$taigachat.enabled}">
+		<xen:if is="{$taigachat.canView}">		
+			
+			<xen:include template="dark_taigachat_chatbox" />	
+			
+		<xen:else />
+		{xen:phrase dark_do_not_have_permission_shoutbox}
+		</xen:if>	
+	<xen:else />
+		{xen:phrase dark_taigachat_disabled}	
+	</xen:if>
+
+</div>
+
+<xen:include template="page_container_js_body" />
+
+<xen:if is="{$cronLink}"><img src="{$cronLink}" width="1" height="1" alt="" /></xen:if>
+
+</body>
+</html>]]></template>
+    <template title="dark_taigachat_single" version_id="24" version_string="1.0.0"><![CDATA[<span class="{xen:if {$message.me}, 'taigachat_me'} {xen:if {$message.activity}, 'taigachat_activity'}">
+
+	<a {xen:if $message.user_id, 'href="{xen:link members, $message}" '}class="username" itemprop="name"><xen:if is="{$message.usernameHtml}">{xen:raw $message.usernameHtml}<xen:else />{xen:helper richUserName, $message}</xen:if></a><xen:if is="!{$message.me} && !{$message.activity}">:</xen:if> 	
+	 
+	<div class='taigachat_messagetext ugc'>{xen:raw $message.messageHtml}</div>
+
+</span>]]></template>
+    <template title="dark_taigachat_widget_online" version_id="20" version_string="1.0.0"><![CDATA[<div id='taigachat_online_users_holder'></div>]]></template>
+  </templates>
+  <bb_code_media_sites/>
+  <template_modifications/>
+</addon>

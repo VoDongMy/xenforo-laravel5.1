@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<block block_id="TaigaChatOnline" title="TaigaChat Users in Chat" version_string="1.0.0" version_id="0000" url="" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="" cache="now">
+  <admin_templates/>
+  <listeners/>
+  <options/>
+  <phrases/>
+  <route_prefixes/>
+  <templates>
+    <template title="EWRblock_TaigaChatOnline"><![CDATA[<xen:include template="dark_taigachat_widget_online" />]]></template>
+  </templates>
+</block>

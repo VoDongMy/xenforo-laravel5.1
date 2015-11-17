@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget_framework version="2.1.1">
+  <widget title="" class="Dark_TaigaChat_WidgetRenderer_Alt" position="hook:forum_list_nodes" display_order="-10" active="0">
+    <options><![CDATA[a:3:{s:10:"expression";s:0:"";s:16:"expression_debug";i:0;s:9:"tab_group";s:0:"";}]]></options>
+  </widget>
+  <widget title="" class="Dark_TaigaChat_WidgetRenderer_Sidebar" position="forum_list" display_order="0" active="0">
+    <options><![CDATA[a:4:{s:5:"limit";i:0;s:9:"tab_group";s:0:"";s:10:"expression";s:0:"";s:16:"expression_debug";i:0;}]]></options>
+  </widget>
+  <widget title="" class="Dark_TaigaChat_WidgetRenderer_Online" position="forum_list" display_order="0" active="0">
+    <options><![CDATA[a:2:{s:10:"expression";s:0:"";s:16:"expression_debug";i:0;}]]></options>
+  </widget>
+</widget_framework>
