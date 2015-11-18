@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('layouts/main');
 });
+
+Route::post('auth/login', ['as' => 'auth_sign_in', 'uses' => 'Auth\AuthController@postLogin']);
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+// Route::controllers([
+//   'auth' => 'Auth\AuthController',
+//   'password' => 'Auth\PasswordController',
+// ]);

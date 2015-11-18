@@ -38,6 +38,10 @@
     list-style: none;
 }
 
+.flex-direction-nav li {
+    display: none;
+}
+
 .flex-pauseplay span {
     text-transform: capitalize;
 }
